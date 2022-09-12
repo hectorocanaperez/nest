@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/monorepo/src",
+  "monorepo": true,
+  "root": "apps/monorepo",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/monorepo/tsconfig.app.json"
+  },
+  "projects": {
+    "monorepo": {
+      "type": "application",
+      "root": "apps/monorepo",
+      "entryFile": "main",
+      "sourceRoot": "apps/monorepo/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/monorepo/tsconfig.app.json"
+      }
+    },
+    "consumer": {
+      "type": "application",
+      "root": "apps/consumer",
+      "entryFile": "main",
+      "sourceRoot": "apps/consumer/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/consumer/tsconfig.app.json"
+      }
+    },
+    "producer": {
+      "type": "application",
+      "root": "apps/producer",
+      "entryFile": "main",
+      "sourceRoot": "apps/producer/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/producer/tsconfig.app.json"
+      }
+    },
+    "transaction": {
+      "type": "application",
+      "root": "apps/transaction",
+      "entryFile": "main",
+      "sourceRoot": "apps/transaction/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/transaction/tsconfig.app.json"
+      }
+    },
+
+    "postgresql": {
+      "type": "library",
+      "root": "libs/postgresql",
+      "entryFile": "index",
+      "sourceRoot": "libs/postgresql/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/postgresql/tsconfig.lib.json"
+      }
+    }
+  }
+}

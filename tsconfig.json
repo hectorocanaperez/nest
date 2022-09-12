@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "allowJs": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@app/postgres": [
+        "libs/postgres/src"
+      ],
+      "@app/postgres/*": [
+        "libs/postgres/src/*"
+      ],
+      "@app/postgresql": [
+        "libs/postgresql/src"
+      ],
+      "@app/postgresql/*": [
+        "libs/postgresql/src/*"
+      ]
+    }
+  }
+}
