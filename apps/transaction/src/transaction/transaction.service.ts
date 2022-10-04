@@ -3,7 +3,7 @@
 import { PipeTransform, Injectable, ArgumentMetadata, BadRequestException } from '@nestjs/common';
 import { TransactionDto } from './transaction.dto';
 import { Transaction } from './transaction.entity';
-import { JsonSchemaService } from 'schemaRegistryLibrary/jsonService';
+//import { JsonSchemaService } from 'schemaRegistryLibrary/jsonService';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { response } from 'express';
