@@ -1,4 +1,4 @@
-import { IsBoolean, IsDate, IsString,} from 'class-validator';
+import { IsBoolean, IsDate, IsDateString, IsObject, isString, IsString,} from 'class-validator';
 //import { ApiProperty } from "@nestjs/swagger";
 
 export class TransactionDto {
@@ -8,13 +8,21 @@ export class TransactionDto {
 
   
     @IsString()
+    flowId:string;
+
+    @IsString()
     customId: string;
 
     @IsBoolean()
     process: boolean;
 
-    @IsDate()
-    time: Date;
+    @IsString()
+    time: string;
+
+    @IsObject()
+    data:{
+        
+    }
 
     //status:string;
    

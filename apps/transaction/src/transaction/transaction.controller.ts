@@ -16,21 +16,14 @@ export class TransactionsController {
     return this.transactionsService.getHello();
   }
 
- 
-
   @Get('todos')
   async getAll(){
     return this.transactionsService.getAll();
   }
 
   @Post('transactions')
-   async createTransaction(@Body() transactionDto: TransactionDto):Promise<Transaction>{
-     return this.transactionsService.create(transactionDto)
+   async createTransaction(@Body() req: TransactionDto){
+     return this.transactionsService.create(req)
    }
-
-
-
-
- 
   
 }

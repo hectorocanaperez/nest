@@ -5,7 +5,7 @@ import { AppService } from './app.service';
 //import { PostgresqlModule } from '@app/postgresql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 //import { TransactionsModule } from 'apps/transactions/src/transactions/transactions.module';
-import { PostgresqlModule } from '@app/postgresql';
+//import { PostgresqlModule } from '@app/postgresql';
 import { ProducerModule } from './producer/producer.module';
 import { TransactionsService } from 'apps/transaction/src/transaction/transaction.service';
 import { TransactionsModule } from 'apps/transaction/src/transaction/transaction.module';
@@ -27,7 +27,7 @@ import { TransactionsModule } from 'apps/transaction/src/transaction/transaction
     
     TransactionsModule,
      ProducerModule,
-     PostgresqlModule
+     
     ],
   controllers: [AppController],
   providers: [AppService],

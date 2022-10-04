@@ -1,0 +1,12 @@
+{
+    "id": {
+        "type": "number"},
+    "transactionId": {
+        "type": "string"},
+    "time":{
+        "type":"string"},
+    "tipo":{
+        "type":"string"},
+    "status":{
+        "type":"string"}
+  }

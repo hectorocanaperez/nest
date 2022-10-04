@@ -1,18 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { Transaction } from '../../../transaction/src/transaction/transaction.entity';
+import  { Transaction } from '../../../transaction/src/transaction/transaction.entity';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TransactionDto } from 'apps/transaction/src/transaction/transaction.dto';
-import { Repository } from 'typeorm';
+import { Repository,DataSource, TransactionNotStartedError } from 'typeorm';
 import { ProducerDto } from './producer.dto';
 import { Producer } from './producer.entity';
+import { ApicurioSchemaService } from '../../../../apicurioSchema/apicurio.service';
+import Ajv from 'ajv';
 
+const ajv = new Ajv() 
 
 
 @Injectable()
 export class ProducerService {
-  constructor(@InjectRepository(Producer) private producerRepository: Repository<Producer>,
+  constructor(@InjectRepository(Producer) private producerRepository: Repository<Producer>,private apicurioService:ApicurioSchemaService,
   @InjectRepository(Transaction) private transactionRepository: Repository<Transaction>){}
 
   async getHello(){
@@ -21,42 +24,53 @@ export class ProducerService {
   async getAll(): Promise<Producer[]> {
       return this.producerRepository.find()
   }
-  async create(producerDto: ProducerDto):Promise<Producer> {
+  async create(req: ProducerDto) {
+    const schemaVal= await this.apicurioService.getSchema(req);
+    console.log("objeto",schemaVal)
     
-    console.log(producerDto)
-    const transaction = await this.transactionRepository.findOne({
+    if (!this.apicurioService.validate(schemaVal.properties.data,req.data)){
+        throw new BadRequestException('el schema no es correcto')
 
-      where:{
-        transactionId: producerDto.transactionId
-
-      }
+    }else{
+      console.log("el esquema es correcto");
       
-       
-    });
+      const transactionS = await this.transactionRepository.findOne({
+        
+        where:{
+          transactionId: req.transactionId
+        }  
+      
+      });
+      
+      const flowId = await this.transactionRepository.findOne({
+  
+        where:{
+          flowId: req.flowId
+        }
+      });
+  
+      if (transactionS && flowId) {
+  
+        const producer = new Producer();
+  
+        producer.transactionId=transactionS.transactionId;
+        producer.flowId=transactionS.flowId;
+        producer.time = transactionS.time;
+        producer.tipo = req.tipo;
+        producer.data=req.data;
+        
+        console.log("estooo es el producer creado",producer)
+        return this.producerRepository.save(producer);
+        
 
-    if (transaction) {
-
-      const producer = new Producer();
-
-      producer.transactionId=transaction.transactionId;
-
-
-      producer.time = transaction.time;
-
-      producer.type = producerDto.type;
-
-      producer.status = producerDto.status;
-
-      await this.producerRepository.save(producer);
-
-      return producer;
-
-    } else {
-
-      throw new BadRequestException('transaction not exists');
+      } else {
+        throw new BadRequestException(' producer nor created');
+      }
 
     }
+       
+  }
 
 }
 
-}
+

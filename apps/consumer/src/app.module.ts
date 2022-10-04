@@ -5,7 +5,7 @@ import { AppService } from './app.service';
 //import { PostgresqlModule } from '@app/postgresql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TransactionsModule } from 'apps/transaction/src/transaction/transaction.module';
-import { PostgresqlModule } from '@app/postgresql';
+//import { PostgresqlModule } from '@app/postgresql';
 import { ConsumerModule } from './consumer/consumer.module';
 import { ScheduleModule } from '@nestjs/schedule';
 
@@ -25,7 +25,7 @@ import { ScheduleModule } from '@nestjs/schedule';
   }),
     ScheduleModule.forRoot(),
      ConsumerModule,
-     PostgresqlModule
+     
     ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,0 +1,23 @@
+{
+  
+    "transactionId": {
+      "type": "string"
+    },
+    "flowId": {
+      "type": "string"
+    },
+    "customId": {
+      "type": "string"
+    },
+    "time": {
+      "type": "string"
+    },
+    "status":{
+      "type":"string"
+    },
+    "process": {
+      "type": "boolean"
+    }
+  
+
+}

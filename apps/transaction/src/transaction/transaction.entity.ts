@@ -1,6 +1,6 @@
 import { Producer } from 'apps/producer/src/producer/producer.entity';
-import { IsEmpty, IsString } from 'class-validator';
-import {Entity,Column,PrimaryGeneratedColumn,BaseEntity, CreateDateColumn, OneToMany, ManyToOne, JoinColumn} from 'typeorm'
+import { IsEmpty, IsString, UUIDVersion } from 'class-validator';
+import {Entity,Column,PrimaryGeneratedColumn,BaseEntity, CreateDateColumn, OneToMany, ManyToOne, JoinColumn, Generated} from 'typeorm'
 
 @Entity()
 export class Transaction extends BaseEntity {
@@ -8,34 +8,29 @@ export class Transaction extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
     transactionId:string;
 
-    
-   
+    @Column({nullable:true})
+    @IsString()
+   //@Generated('uuid')
+   flowId:string;
 
-    
 
-    @Column({nullable:false})
+    @Column({nullable:true})
     customId: string;
 
-    @Column({nullable:false})
+    @Column({nullable:true})
     process:boolean;
 
-    @CreateDateColumn({nullable:true})
-    time: Date;
+    @Column({nullable:true})
+    time: string;
+
+    @Column({type:'jsonb',
+    nullable:true})
+
+      data:{
+          
+      }
 
     //status:string;
   transaction: string 
-  
-
-   /* @ManyToOne(() => Transaction, (Transaction) => Transaction.transactionId, { cascade: true })
-
-    @JoinColumn({ name: 'transactionId' })
-
-  
-    
-    transaction: Transaction;*/
-
-    
-  
-
     
 }

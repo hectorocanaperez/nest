@@ -45,6 +45,15 @@
         "tsConfigPath": "apps/transaction/tsconfig.app.json"
       }
     },
+    "Schema": {
+      "type": "entryFile",
+      "root": "monorepo/Schema",
+      
+      "sourceRoot": "monorepo/Schema",
+      "compilerOptions": {
+        "tsConfigPath": "monorepo/Schema/tsconfig.app.json"
+      }
+    },
 
     "postgresql": {
       "type": "library",

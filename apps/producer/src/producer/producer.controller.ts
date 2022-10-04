@@ -18,8 +18,8 @@ export class ProducerController {
   }
 
  @Post('producers')
-  async createProducer(@Body() producerDto: ProducerDto):Promise<Producer>{
-      return this.producerService.create(producerDto)
+  async createProducer(@Body() req: ProducerDto){
+      return this.producerService.create(req)
   }
 
   

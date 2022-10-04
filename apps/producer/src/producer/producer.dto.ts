@@ -1,4 +1,5 @@
-import { IsArray, IsDate, IsString} from 'class-validator'
+import { IsArray, IsDate, IsDateString, isJSON, IsJSON, IsObject, IsString} from 'class-validator'
+//import { isStringObject } from 'util/types';
 
 export class ProducerDto {
    
@@ -9,22 +10,19 @@ export class ProducerDto {
     @IsString()
     transactionId:string;
 
-
-    @IsDate()
-    time:Date;
+    @IsString()
+    flowId:string;
 
     @IsString()
-    type: string;
-    
+    time:string;
 
     @IsString()
-    status:string;
-
-    //transaction: any;
-  
-
-
-   
+    tipo: string;
     
+
+    @IsObject()
+    data:{
+        
+    }
    
 }

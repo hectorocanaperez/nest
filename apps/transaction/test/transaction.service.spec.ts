@@ -49,10 +49,13 @@ describe('TransactionsControllerCreate', () => {
   describe('createTransaction',()=>{
     it('should create transaction',async()=>{
       await service.create({
-        customId: "222-fff",
-        transactionId: 'sdjh78787',
-        process: false,
-        time: undefined,
+        transactionDto: {
+          customId: "222-fff",
+          flowId: "4343-hhh",
+          transactionId: 'sdjh78787',
+          process: false,
+          time: undefined,
+        }
       })
       expect(transactionRepository.save);
     })

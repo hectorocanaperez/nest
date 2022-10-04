@@ -26,7 +26,7 @@ describe('TransactionController', () => {
 
       const res = await ( request.post('http://localhost:3003/transactions/transactions')).send({
 
-        "customId": "3i33-ññññkkkkñ",
+        "customId": "3i3ñ3-ññññkkkkñ",
 
         "process": false
 

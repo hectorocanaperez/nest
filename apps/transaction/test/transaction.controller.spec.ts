@@ -51,6 +51,7 @@ const mockerTransaction = {
   it ('crea una transaction',()=>{
     expect(transaction.createTransaction({customId: "222-fff",
     transactionId: 'sdjh78787',
+    flowId:'66-skhdeihfiudf',
     process: false,
     time: undefined,})
     
