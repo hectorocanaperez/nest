@@ -19,13 +19,13 @@ export class TransactionDto {
     @IsString()
     time: string;
 
-    @IsObject()
-    data:{
-        
-    }
+   
 
     //status:string;
    
+
     
-   
+    
+    
+    
 }

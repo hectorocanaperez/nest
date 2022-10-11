@@ -1,23 +1,12 @@
 {
-  
-    "transactionId": {
-      "type": "string"
+  "title" : "step-status",
+  "properties" : {
+    "status" : {
+      "type" : "string"
     },
-    "flowId": {
-      "type": "string"
-    },
-    "customId": {
-      "type": "string"
-    },
-    "time": {
-      "type": "string"
-    },
-    "status":{
-      "type":"string"
-    },
-    "process": {
-      "type": "boolean"
+    "step" : {
+      "type" : "string"
     }
-  
-
+  },
+  "required" : [ "step", "status" ]
 }

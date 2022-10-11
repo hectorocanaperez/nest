@@ -5,6 +5,7 @@ import { TransactionDto } from '../src/transaction/transaction.dto';
 import { Transaction } from '../src/transaction/transaction.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import {ApicurioSchemaService} from '../../../apicurioSchema/apicurio.service'
 
 describe('TransactionsControllerCreate', () => {
   let controller: TransactionsController;
@@ -16,7 +17,7 @@ describe('TransactionsControllerCreate', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [TransactionsController],
-      providers: [TransactionsService,
+      providers: [TransactionsService,ApicurioSchemaService,
       {
         provide:TRANSACTION_TOKEN,
         useValue:{
@@ -49,13 +50,14 @@ describe('TransactionsControllerCreate', () => {
   describe('createTransaction',()=>{
     it('should create transaction',async()=>{
       await service.create({
-        transactionDto: {
-          customId: "222-fff",
-          flowId: "4343-hhh",
-          transactionId: 'sdjh78787',
-          process: false,
-          time: undefined,
-        }
+        "flowId": "dfdfdsfsf",
+        "process": false,
+        "customId": "sfdsagfdg",
+        "time": "2014-08-06T20:05:12.0Z",
+        "data": {
+          "dfsf": "fsfsf",
+        },
+        transactionId: ''
       })
       expect(transactionRepository.save);
     })

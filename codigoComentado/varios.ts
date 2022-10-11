@@ -1,59 +1,117 @@
-// const consumers= await this.producerRepository.find({
-     
-    //   where:{
-    //     tipo:'facephi79'
-    //   }
-    // })
-    // console.log("consumidores(type)",consumers)
+//PRUEBA PARA PRACTICAR CON REDUCER/STORE
 
+  //   const STATUS_FIRST = 'ESPERANDO'
+  //   const STATUS_FINAL = 'COMPLETADO'
+  //   const STEP_FIRST='INICIO'
+  //   const STEP_FINAL='FINALIZANDO'
 
-    // this.producerRepository
-    // .createQueryBuilder('estado')
-    // .select()
-    // .where('estado.data.state ::jsonb @> :data.state', {
-      
-    // })
-    // .printSql()
-    // .getMany();
+  //   const transactiond = {
+  //     status:'en proceso'
+  //   }
+
+  //   const stepd = {
+  //     step:'iniciando'
+  //   }
+
    
-    
-   
-    // const resultado = (await constructBaseQuery({ entity: Producer })
-    // .select()
-    // .where(`Producer.data.status ::jsonb=:suceed `,
-    
-    // )
-    // .getMany()) as Producer;
-
-
-
-    // console.log("resultadooo",resultado)
+  //   const producerd={
+  //       transactionId:"7660c4ad-daf4-4cc6-b1d0-03173b8b80c2",
+  //       flowId:"esse",
+  //       time:"dafdsfsdf",
+  //       tipo:"status changed",
+  //       data:{
+  //           step:"1ºstep",
+  //           status:"esperando"
+  //       }
+  //   }
+        
       
-    // const consumidores= await this.producerRepository.find({
-
-     
-    //   where:{
-       
-    //   status:'suceed'
-    //   }
-    // })
-
-    
-    // console.log("consumidores(estado)",consumidores)
-    
-    // Con esta query actualizamos el estado
-
-    // const search= await this.dataSource
-    // .createQueryBuilder()
-    // .update(Producer)
-    // .set({data:{
-    //   status:"suceed"}})
-    // //.where("status= 'esperando'")
-    // .where(`data.status ::jsonb @> Producer.data.status=esperando`,)
-    
-    // .execute()
-
-    // console.log("estado",search)
+  //   const stateReducer = (transaction=transactiond, producer) => {
+  //     switch (producer.type) {
+  //       case STATUS_FIRST:
+  //         return {
+  //           ...transactiond,
+  //              status:producerd.data.status,
+  //         }
+  //       case STATUS_FINAL:
+  //         return {
+  //           ...transactiond,
+  //              status:'suceed',
+  //         }
+  //       default:
+  //         return transactiond
+  //     }
+  //   }
+  
+  
+  //   const stepReducer = (step = stepd, producer) => {
+  //     switch (producer.type) {
+  //       case STEP_FIRST:
+  //         return {
+  //           ...step,
+  //           step:producerd.data.step
+  //         }
+  //       case STEP_FINAL:
+  //         return {
+  //           ...step,
+  //           step: "full"
+  //         }
+  //       default:
+  //         return stepd
+  //     }
+  //   }
+  //   function orderStatus() {
+  //     return {
+  //       type: STATUS_FIRST,
+        
+  //     }
+  //   }
+  //   function restockStatus() {
+  //     return {
+  //       type: STATUS_FINAL
+        
+  //     }
+  //   }
+  //   function orderStep() {
+  //     return {
+  //       type: STEP_FIRST,
+        
+  //     }
+  //   }
+  //   function restockStep() {
+  //     return {
+  //       type: STEP_FINAL,
+        
+  //     }
+  //   }
+  
+  //   const rootReducer = combineReducers({
+  //     transaction: stateReducer,
+  //     step: stepReducer
+  //   })
+  
+  
+  //   const store = createStore(rootReducer)
+  
+  // console.log('Initial State ', store.getState())
+  // const unsubscribe = store.subscribe(() => {
+  //   console.log('Updated State ', store.getState())
+  // })
+  
+  
+  
+  // const actions = bindActionCreators(
+  //   { orderStatus,restockStatus,restockStep, orderStep },
+  //   store.dispatch
+  // )
+  // actions.orderStatus()
+  // actions.orderStatus()
+  // actions.orderStep()
+  // actions.restockStep()
+  // actions.orderStep()
+  // actions.orderStatus()
+  // actions.restockStatus()
+  // unsubscribe()
 
 
     

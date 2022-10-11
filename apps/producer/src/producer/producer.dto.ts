@@ -17,12 +17,13 @@ export class ProducerDto {
     time:string;
 
     @IsString()
-    tipo: string;
+    type: string;
     
 
     @IsObject()
     data:{
-        
+        status:string;
+        step:string;
     }
    
 }

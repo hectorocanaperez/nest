@@ -11,9 +11,10 @@ import { validate } from 'class-validator';
 import { ApicurioSchemaService } from '../../../../apicurioSchema/apicurio.service';
 import Ajv from 'ajv';
 //import jsf from "json-schema-faker";
-//import * as generate from 'json-schema-faker';
+import * as generate from 'json-schema-faker';
 //const {Client}=require('pg');
 const jsf=require('json-schema-faker');
+//import * as jsf from 'json-schema-faker'
 const ajv = new Ajv() 
 
 
@@ -39,10 +40,11 @@ export class TransactionsService {
 
   async create(req: TransactionDto) {
 
-  const schemaVal= await this.apicurioService.getSchema(req);
+  const schemaVal= await this.apicurioService.getSchema(req.flowId);
+  console.log("este es el schema",schemaVal)
   console.log("objeto",schemaVal)
   
-  if (!this.apicurioService.validate(schemaVal.properties.flowId,req.flowId)){
+  if (!this.apicurioService.validate(schemaVal,req.flowId)){
     
       throw new BadRequestException('el schema no es correcto')
 
@@ -57,7 +59,10 @@ export class TransactionsService {
 
 
   if (sample){
-          
+          sample.process=false,
+          sample.customId='lorem',
+          sample.flowId=req.flowId
+
           
           return this.transactionRepository.save(sample as any);
       

@@ -23,14 +23,15 @@ export class Producer extends BaseEntity{
     
 
     @Column({nullable:true})
-    tipo: string;
+    type: string;
 
 
     @Column({type:'jsonb',
         nullable:true})
     
     data:{
-        
+        status:string;
+        step:string;
     }
    
   

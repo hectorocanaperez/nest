@@ -1,12 +1,9 @@
 {
-    "id": {
-        "type": "number"},
-    "transactionId": {
-        "type": "string"},
-    "time":{
-        "type":"string"},
-    "tipo":{
-        "type":"string"},
     "status":{
-        "type":"string"}
-  }
+    "enum":[
+      "created",
+      "process",
+      "suceed"
+    ]
+       }
+}

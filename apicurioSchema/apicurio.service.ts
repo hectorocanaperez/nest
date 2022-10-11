@@ -1,23 +1,27 @@
 import { Injectable } from "@nestjs/common";
 import * as Request from 'superagent'
 import Ajv from 'ajv';
-
+const superagent=require("superagent")
 
 @Injectable()
 export class ApicurioSchemaService{
 
+    private readonly ajv;
     
-    ajv=new Ajv();
+    constructor () {
+        this.ajv = new Ajv();
+        this.ajv.addKeyword('status');
+    }
 
     createSchema(schemaName:string,schemaDefinition:string){
         return schemaName;
     }
 
-    async getSchema(schemaName:object):Promise<any|boolean>{
+    async getSchema(schemaName:string){
 
        
         try{
-            const res=await Request('http://localhost:8087/api/artifacts/6e568e6d-c6fd-46c0-b5e3-e2d88176badd')    
+            const res=await superagent(`http://localhost:8087/api/artifacts/${schemaName}`)    
             if (res.status===200){
                 return res.body
             }
@@ -26,6 +30,7 @@ export class ApicurioSchemaService{
             console
             return false;
         }
+        
     }
 
     validate(schema:any,data:any){

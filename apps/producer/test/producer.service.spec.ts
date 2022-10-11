@@ -11,6 +11,7 @@ import { Producer } from '../src/producer/producer.entity';
 import { AppModule } from 'apps/transaction/src/app.module';
 import { TransactionsModule } from 'apps/transaction/src/transaction/transaction.module';
 import { async } from 'rxjs';
+import {ApicurioSchemaService} from '../../../apicurioSchema/apicurio.service'
 
 describe('ProducerControllerCreate', () => {
   let controller: ProducerController;
@@ -27,7 +28,7 @@ describe('ProducerControllerCreate', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [ProducerController],
 
-      providers: [ProducerService,
+      providers: [ProducerService,ApicurioSchemaService,
     
       {
         provide:PRODUCER_TOKEN,
@@ -46,11 +47,15 @@ describe('ProducerControllerCreate', () => {
           create:jest.fn(),
           save:jest.fn(),
           findOne:jest.fn().mockResolvedValue({
-            transactionId: '0ce9cc10-19d1-4643-9064-4c7cda9ab39d',
+            transactionId: '8559eae7-3e15-4852-baa8-6c480b600dd1',
+            flowId:'hdsbshfbhfdb',
             id:34,
-            type:'facephi33',
-            status: 'esperando',
-            time: undefined,
+            tipo:'com.facephi.identityplatform.transaction.status_changed',
+            data:{
+              status:'iniciando',
+              step:'full',
+            },
+            time: '1959-01-26T01:40:19.0Z',
             })
         },
         
@@ -82,14 +87,18 @@ describe('ProducerControllerCreate', () => {
   describe('createProducer',()=>{
     it('should create PRODUCER',async()=>{
       const search=await service.create({
-        transactionId: '0ce9cc10-19d1-4643-9064-4c7cda9ab39d',
+        transactionId: '8559eae7-3e15-4852-baa8-6c480b600dd1',
+        flowId:'hkdsjbchjdsbjdsb',
         id:34,
-        type:'facephi33',
-        status: 'esperando',
-        time: undefined,
+        tipo:'com.facephi.identityplatform.transaction.status_changed',
+        data:{
+          status:"espernado",
+          step:"1º step",
+        },
+        time: '1959-01-26T01:40:19.0Z',
       })
      
-      const transaction = transactionRepository.findOne({
+      const transaction = await transactionRepository.findOne({
 
         where:{
           transactionId: search.transactionId
@@ -100,6 +109,8 @@ describe('ProducerControllerCreate', () => {
      if (transaction){
        expect(producerRepository.save(search));
 
+      }else{
+        console.log("errorrrrrr")
       }
       
       

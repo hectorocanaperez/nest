@@ -3,6 +3,7 @@
 
 import { BadRequestException, Controller } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import {ApicurioSchemaService} from '../../../apicurioSchema/apicurio.service'
 import { create } from 'domain';
 import { AppController } from '../src/app.controller';
 import { AppService } from '../src/app.service';
@@ -21,7 +22,11 @@ const mockerTransaction = {
         customId: "222-fff",
         transactionId: 'sdjh78787',
         process: false,
+        tipo:"status changed",
         time: undefined,
+        data:{
+          status:"esperando"
+        },
         ...TransactionDto, 
       };
     }),
@@ -30,7 +35,7 @@ const mockerTransaction = {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({ 
       controllers: [TransactionsController],
-      providers: [TransactionsService] ,  
+      providers: [TransactionsService,ApicurioSchemaService] ,  
     })
     .overrideProvider(TransactionsService)
     .useValue(mockerTransaction)
@@ -49,11 +54,16 @@ const mockerTransaction = {
   });
   
   it ('crea una transaction',()=>{
-    expect(transaction.createTransaction({customId: "222-fff",
-    transactionId: 'sdjh78787',
-    flowId:'66-skhdeihfiudf',
-    process: false,
-    time: undefined,})
+    expect(transaction.createTransaction({ 
+    transactionId:"c53917ce-41db-48c9-96cf-e6740bc35214",
+    flowId:"dfdfdsfsgf",
+    process:false,
+    customId:"sfdsagwfdg",
+    time:"",
+    data:{
+        status:"dfdsf"
+    }
+  })
     
   )})
   

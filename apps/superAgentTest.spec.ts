@@ -26,9 +26,13 @@ describe('TransactionController', () => {
 
       const res = await ( request.post('http://localhost:3003/transactions/transactions')).send({
 
-        "customId": "3i3ñ3-ññññkkkkñ",
-
-        "process": false
+        "flowId":"dfdfdsfsf",
+        "process":false,
+        "customId":"sfdsagfdg",
+        "time":"",
+        "data":{
+            
+        }
 
       });
 
@@ -75,10 +79,13 @@ describe('TransactionController', () => {
     it('should return a 201 status', async () => {
 
       const res = await ( request.post('http://localhost:3002/producers/producers')).send({
-        "transactionId":"82acc0c5-09f4-4636-9fab-801ff36735b9",
-        "type":"facephi78",
-        "time":"2022-08-23 11:19:01.202",
-        "status":"esperando"
+        "transactionId":"7660c4ad-daf4-4cc6-b1d0-03173b8b80c2",
+        "flowId":"esse",
+        "time":"dafdsfsdf",
+        "tipo":"status changed",
+        "data":{
+            "status":"esperando"
+        }
       })
 
      //idProducer = res.transactionId;

@@ -1,16 +1,15 @@
-import { Logger, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Producer } from 'apps/producer/src/producer/producer.entity';
 import { Transaction } from 'apps/transaction/src/transaction/transaction.entity';
-//import { ReducerModule } from 'reducers/reducer.module';
-import { ReducerStore } from '../../../../reducers/reducer.store';
-import { ConsumerController } from './consumer.controller';
+//import { ConsumerController } from './consumer.controller';
 //import { Consumer } from './consumer.entity';
-import { ConsumerService } from './consumer.service';
+//import { ApicurioSchemaService } from './apicurio.service';
+import { ReducerStore } from './reducer.store';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Transaction,Producer]),
+    
     TypeOrmModule.forRoot({
       autoLoadEntities: true,
     type: 'postgres',
@@ -26,7 +25,9 @@ import { ConsumerService } from './consumer.service';
     })],
     
   
-  controllers: [ConsumerController],
-  providers: [ConsumerService,ReducerStore,Logger],
+  //controllers: [ConsumerController],
+  providers: [ReducerStore],
+
 })
-export class ConsumerModule {}
+
+export class ReducerModule {}

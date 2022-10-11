@@ -25,10 +25,10 @@ export class ProducerService {
       return this.producerRepository.find()
   }
   async create(req: ProducerDto) {
-    const schemaVal= await this.apicurioService.getSchema(req);
+    const schemaVal= await this.apicurioService.getSchema(req.flowId);
     console.log("objeto",schemaVal)
     
-    if (!this.apicurioService.validate(schemaVal.properties.data,req.data)){
+    if (!this.apicurioService.validate(schemaVal,req.data)){
         throw new BadRequestException('el schema no es correcto')
 
     }else{
@@ -49,15 +49,17 @@ export class ProducerService {
         }
       });
   
-      if (transactionS && flowId) {
+      if (transactionS) {
   
         const producer = new Producer();
   
         producer.transactionId=transactionS.transactionId;
-        producer.flowId=transactionS.flowId;
+        producer.flowId=req.flowId;
         producer.time = transactionS.time;
-        producer.tipo = req.tipo;
+        producer.type = req.type;
         producer.data=req.data;
+        producer.data.status=req.data.status;
+        producer.data.step=req.data.step;
         
         console.log("estooo es el producer creado",producer)
         return this.producerRepository.save(producer);
@@ -72,5 +74,3 @@ export class ProducerService {
   }
 
 }
-
-

@@ -8,6 +8,7 @@ import { TransactionDto } from '../../transaction/src/transaction/transaction.dt
 import { TransactionsService } from '../../transaction/src/transaction/transaction.service';
 import { ProducerController } from '../src/producer/producer.controller';
 import { ProducerService } from '../src/producer/producer.service';
+import {ApicurioSchemaService} from '../../../apicurioSchema/apicurio.service'
 
 describe('PruebaController', () => {
   //let Appcontroller: AppController;
@@ -19,9 +20,12 @@ const mockerProducer = {
       return {
         transactionId: 'sdjh78787',
         id:34,
-        type:'facephi33',
-        status: 'esperando',
-        time: undefined,
+        tipo:'',
+        data:{
+          status:'esperando',
+          step:'2º step'
+        },
+        time:'',
         ...ProducerDto, 
       };
     }),
@@ -30,7 +34,7 @@ const mockerProducer = {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({ 
       controllers: [ProducerController],
-      providers: [ProducerService] ,  
+      providers: [ProducerService,ApicurioSchemaService] ,  
     })
     .overrideProvider(ProducerService)
     .useValue(mockerProducer)
@@ -54,11 +58,17 @@ const mockerProducer = {
   
 
   it ('crea un producer',()=>{
-    expect(controller.createProducer({transactionId: 'sdjh78787',
-    id:34,
-    type:'facephi33',
-    status: 'esperando',
-    time: undefined,})
+    expect(controller.createProducer({
+      transactionId:"7660c4ad-daf4-4cc6-b1d0-03173b8b80c2",
+      flowId:"esse",
+      id:888,
+      time:"dafdsfsdf",
+      tipo:"com.facephi.identityplatform.transaction.step_changed",
+      data:{
+        status:'esperando',
+        step:'2ºstep',
+      }
+    })
     
   )})
       /*jest.spyOn(service,'create')
