@@ -117,7 +117,33 @@
     
   
 
-  
+   //query para modificar el estado
+
+
+    // const searchState= await this.dataSource
+    // .createQueryBuilder()
+    // .update(Producer)
+    // .set({data:{
+    //   status:"suceed"}})
+    // .where("type= 'statusChanged'")
+    // .execute()
+
+
+    // const searchStateFinal= await this.dataSource
+    // .createQueryBuilder()
+    // .update(Producer)
+    // .set({data:{
+    //   step:"full"}})
+    // .where("type= 'stepChanged'")
+    // .execute()
+
+
+     // const searchStep= await this.dataSource
+    // .createQueryBuilder()
+    // .update(Transaction)
+    // .set({process:true})
+    // .where("process= 'false'")
+    // .execute()
 
 
 

@@ -42,12 +42,12 @@ export class ProducerService {
       
       });
       
-      const flowId = await this.transactionRepository.findOne({
+      // const flowId = await this.transactionRepository.findOne({
   
-        where:{
-          flowId: req.flowId
-        }
-      });
+      //   where:{
+      //     flowId: req.flowId
+      //   }
+      // });
   
       if (transactionS) {
   
@@ -61,7 +61,7 @@ export class ProducerService {
         producer.data.status=req.data.status;
         producer.data.step=req.data.step;
         
-        console.log("estooo es el producer creado",producer)
+        console.log("esto es el producer creado",producer)
         return this.producerRepository.save(producer);
         
 

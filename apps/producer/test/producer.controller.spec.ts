@@ -20,7 +20,7 @@ const mockerProducer = {
       return {
         transactionId: 'sdjh78787',
         id:34,
-        tipo:'',
+        type:'',
         data:{
           status:'esperando',
           step:'2º step'
@@ -62,8 +62,8 @@ const mockerProducer = {
       transactionId:"7660c4ad-daf4-4cc6-b1d0-03173b8b80c2",
       flowId:"esse",
       id:888,
-      time:"dafdsfsdf",
-      tipo:"com.facephi.identityplatform.transaction.step_changed",
+      time:"2022-10-17T08:09:08.607Z",
+      type:"step1",
       data:{
         status:'esperando',
         step:'2ºstep',

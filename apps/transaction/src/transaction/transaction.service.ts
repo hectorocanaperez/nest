@@ -10,8 +10,9 @@ import { response } from 'express';
 import { validate } from 'class-validator';
 import { ApicurioSchemaService } from '../../../../apicurioSchema/apicurio.service';
 import Ajv from 'ajv';
+import { time } from 'console';
 //import jsf from "json-schema-faker";
-import * as generate from 'json-schema-faker';
+//import * as generate from 'json-schema-faker';
 //const {Client}=require('pg');
 const jsf=require('json-schema-faker');
 //import * as jsf from 'json-schema-faker'
@@ -42,7 +43,7 @@ export class TransactionsService {
 
   const schemaVal= await this.apicurioService.getSchema(req.flowId);
   console.log("este es el schema",schemaVal)
-  console.log("objeto",schemaVal)
+  
   
   if (!this.apicurioService.validate(schemaVal,req.flowId)){
     
@@ -61,7 +62,10 @@ export class TransactionsService {
   if (sample){
           sample.process=false,
           sample.customId='lorem',
-          sample.flowId=req.flowId
+          sample.flowId=req.flowId,
+          sample.time=req.time
+          
+          
 
           
           return this.transactionRepository.save(sample as any);

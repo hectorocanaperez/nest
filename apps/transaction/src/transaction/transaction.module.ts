@@ -3,8 +3,8 @@ import { TransactionsController } from './transaction.controller';
 import { Transaction } from './transaction.entity';
 import { TransactionsService } from './transaction.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ApicurioSchemaService } from 'apicurioSchema/apicurio.service';
-import { ApicurioModule } from 'apicurioSchema/apicurio.module';
+import { ApicurioSchemaService } from '../../../../apicurioSchema/apicurio.service';
+import { ApicurioModule } from '../../../../apicurioSchema/apicurio.module';
 //import { PostgresqlModule } from '@app/postgresql';
 
 @Module({

@@ -1,5 +1,5 @@
 import { Producer } from 'apps/producer/src/producer/producer.entity';
-import { IsEmpty, IsObject, IsString, UUIDVersion } from 'class-validator';
+import { IsEmpty, IsString, UUIDVersion } from 'class-validator';
 import {Entity,Column,PrimaryGeneratedColumn,BaseEntity, CreateDateColumn, OneToMany, ManyToOne, JoinColumn, Generated} from 'typeorm'
 
 @Entity()
@@ -20,10 +20,10 @@ export class Transaction extends BaseEntity {
     @Column({nullable:true})
     process:boolean;
 
-    @Column({nullable:true})
+    @CreateDateColumn({nullable:true})
     time: string;
 
-   
+    
 
     //status:string;
   transaction: string 

@@ -8,7 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 //import { PostgresqlModule } from '@app/postgresql';
 import { ProducerModule } from './producer/producer.module';
 import { TransactionsService } from 'apps/transaction/src/transaction/transaction.service';
-import { TransactionsModule } from 'apps/transaction/src/transaction/transaction.module';
+import { TransactionsModule } from '../../transaction/src/transaction/transaction.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -33,4 +33,4 @@ import { TransactionsModule } from 'apps/transaction/src/transaction/transaction
   providers: [AppService],
   exports:[TypeOrmModule],
 })
-export class AppModule {}
+export class AppModuleProducer {}

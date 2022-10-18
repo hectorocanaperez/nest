@@ -1,7 +1,7 @@
 import { Reducer } from './reducer.type';
 
 export const EVENT_TYPE =
-  'status1';
+  'statusChanged';
 
 export const reducer: Reducer = (producer: any, transaction: any) => {
 

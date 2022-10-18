@@ -14,6 +14,7 @@ import { ReducerStore } from 'reducers/reducer.store';
 import { type } from 'os';
 import { stringify } from 'querystring';
 import { Reducer } from 'reducers/reducer.type';
+import { reducer } from 'reducers/step.changed.reducer';
 // import { reducerState } from 'reducers/reducerState';
 // import { reducerStep } from 'reducers/reducerState';
 
@@ -66,36 +67,70 @@ export class ConsumerService {
       
     }
 
+
+
+
+
+
+
     Object.entries(listaProcess).forEach(([key, events]) => {
-      // buscar la trasancion
+     
       const transaction = {};
 
-      // buscas el schema con el flowid de la transaccion
-
       events.forEach(event => {
-        // buscas el reducer 
 
-        const reducer: Function = this.reducerStore.getReducer(event.type);
+        const reducer= this.reducerStore.getReducer(event.type);
 
         if (reducer) {
           const change = reducer(event,transaction);
+          console.log("change",change)
           console.log(`event reduced succesfully`);
-          // usar el reducer
-
-          // validar si el resultado es valido
-
-          // aplicar el cambio
+          
         } else {
           console.log(`event type [${event.type}] not found`);
+        }
+        if (event.type==='stepChanged'){
+          const searchStep= this.dataSource
+          .createQueryBuilder()
+          .update(Producer)
+          .set({data:{
+            step:"full"
+           }})
+          .where("type= 'stepChanged'")
+          .execute()
+        }
+
+        if (event.type==='statusChanged'){
+          const searchState= this.dataSource
+          .createQueryBuilder()
+          .update(Producer)
+          .set({data:{
+            status:"suceed"
+            }})    
+          .where("type= 'statusChanged'")
+          .execute()
         }
       })
     })
 
-    console.log("lista producers-trans",listaProcess);
 
-    const reducerSearch= this.reducerStore.getReducer('step1');
+   
+
+    
+
+
+    const reducerSearch= this.reducerStore.getReducer('statusChanged');
+    const reducerSearchStep=this.reducerStore.getReducer('stepChanged')
       
-    console.log("redux",reducerSearch)
+    // console.log("reduxStatus",reducerSearch);
+    // console.log("reduxStep",reducerSearchStep);
+
+    
+
+
+
+
+    
     
   }
 
@@ -111,28 +146,10 @@ export class ConsumerService {
   }
 }
     
-     //query para modificar el estado
+    //query para poner el process en true
 
 
-    // const searchState= await this.dataSource
-    // .createQueryBuilder()
-    // .update(Producer)
-    // .set({data:{
-    //   status:"process"}})
-    // .where("type= 'status1'")
-    // .execute()
-
-
-    // const searchStateFinal= await this.dataSource
-    // .createQueryBuilder()
-    // .update(Producer)
-    // .set({data:{
-    //   status:"suceed"}})
-    // .where("type= 'procesado'")
-    // .execute()
-
-
-     // const searchStep= await this.dataSource
+    // const searchStep= await this.dataSource
     // .createQueryBuilder()
     // .update(Transaction)
     // .set({process:true})

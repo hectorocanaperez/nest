@@ -11,6 +11,7 @@ export class ApicurioSchemaService{
     constructor () {
         this.ajv = new Ajv();
         this.ajv.addKeyword('status');
+        this.ajv.addKeyword('steps');
     }
 
     createSchema(schemaName:string,schemaDefinition:string){
@@ -27,7 +28,7 @@ export class ApicurioSchemaService{
             }
         
         }catch(error){
-            console
+            console.log("error",error)
             return false;
         }
         

@@ -16,10 +16,10 @@ export class TransactionDto {
     @IsBoolean()
     process: boolean;
 
-    @IsString()
+    @IsDate()
     time: string;
 
-   
+    
 
     //status:string;
    

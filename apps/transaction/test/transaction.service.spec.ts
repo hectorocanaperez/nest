@@ -6,10 +6,13 @@ import { Transaction } from '../src/transaction/transaction.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import {ApicurioSchemaService} from '../../../apicurioSchema/apicurio.service'
+import { BadRequestException } from '@nestjs/common';
+const jsf=require('json-schema-faker');
 
 describe('TransactionsControllerCreate', () => {
   let controller: TransactionsController;
   let service: TransactionsService;
+  let serviceApicurio:ApicurioSchemaService
   let transactionRepository: Repository<Transaction>;
 
   const TRANSACTION_TOKEN=getRepositoryToken(Transaction)
@@ -34,10 +37,17 @@ describe('TransactionsControllerCreate', () => {
 
     controller = module.get<TransactionsController>(TransactionsController);
     service = module.get<TransactionsService>(TransactionsService); 
+    serviceApicurio=module.get<ApicurioSchemaService>(ApicurioSchemaService); 
     transactionRepository=module.get<Repository<Transaction>>(TRANSACTION_TOKEN)
   });
 
-
+  const search={
+    "flowId":"51afec2e-93c2-4ba8-9f3d-519dfab59312",
+    "process":false,
+    "customId":"",
+    "time":"",
+    transactionId: ''
+  }
 
   it('should be defined', () => {
     expect(service).toBeDefined();
@@ -49,17 +59,24 @@ describe('TransactionsControllerCreate', () => {
 
   describe('createTransaction',()=>{
     it('should create transaction',async()=>{
-      await service.create({
-        "flowId": "dfdfdsfsf",
-        "process": false,
-        "customId": "sfdsagfdg",
-        "time": "2014-08-06T20:05:12.0Z",
-        "data": {
-          "dfsf": "fsfsf",
-        },
-        transactionId: ''
-      })
-      expect(transactionRepository.save);
+  const schemaVal= await serviceApicurio.getSchema(search.flowId);
+  console.log("este es el schema",schemaVal)
+  
+  
+  if (!serviceApicurio.validate(schemaVal,search.flowId)){
+    
+      throw new BadRequestException('el schema no es correcto')
+
+  }else{
+    
+    console.log("el esquema es correcto");
+  }
+  var sample=jsf(schemaVal);
+  if (sample){
+    await service.create(search)
+    expect(transactionRepository.save);
+  }
+     
     })
   })
   it('should see hello world',async()=>{

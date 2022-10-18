@@ -1,9 +1,15 @@
 {
-    "status":{
-    "enum":[
-      "created",
-      "process",
-      "suceed"
-    ]
-       }
-}
+  "status":{
+  "enum":[
+    "created",
+    "suceed"
+  ]
+     },
+   
+   "steps":{
+   "enum":[
+      "iniciado",
+       "full"
+   ]
+  }
+  }

@@ -24,9 +24,7 @@ const mockerTransaction = {
         process: false,
         tipo:"status changed",
         time: undefined,
-        data:{
-          status:"esperando"
-        },
+        
         ...TransactionDto, 
       };
     }),
@@ -60,9 +58,7 @@ const mockerTransaction = {
     process:false,
     customId:"sfdsagwfdg",
     time:"",
-    data:{
-        status:"dfdsf"
-    }
+   
   })
     
   )})

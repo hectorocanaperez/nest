@@ -13,7 +13,7 @@ export class ProducerDto {
     @IsString()
     flowId:string;
 
-    @IsString()
+    @IsDateString()
     time:string;
 
     @IsString()

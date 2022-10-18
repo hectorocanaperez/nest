@@ -8,10 +8,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProducerController } from './producer.controller';
 import { Producer } from './producer.entity';
 import { ProducerService } from './producer.service';
-import { TransactionsController } from 'apps/transaction/src/transaction/transaction.controller';
-import { TransactionsService } from 'apps/transaction/src/transaction/transaction.service';
-import { ApicurioSchemaService } from 'apicurioSchema/apicurio.service';
-import { ApicurioModule } from 'apicurioSchema/apicurio.module';
+import { TransactionsController } from '../../../transaction/src/transaction/transaction.controller';
+import { TransactionsService } from '../../../transaction/src/transaction/transaction.service';
+import { ApicurioSchemaService } from '../../../../apicurioSchema/apicurio.service';
+import { ApicurioModule } from '../../../../apicurioSchema/apicurio.module';
 
 @Module({
   imports: [ TypeOrmModule.forFeature([Producer]),TypeOrmModule.forFeature([Transaction]),ApicurioModule],

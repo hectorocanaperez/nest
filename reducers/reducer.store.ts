@@ -16,10 +16,11 @@ export class ReducerStore {
   }
 
   getReducer(eventType: string) {
-    return this.cache.get(eventType) || (() => {
-        throw new BadRequestException(`ERROR NOT FOUND [${eventType}] REDUX FUNCTION`)
-    })
+    return this.cache.get(eventType) 
+  
+    
   }
+ 
 }
 
 

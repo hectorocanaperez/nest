@@ -10,15 +10,17 @@ import { ProducerService } from '../src/producer/producer.service';
 import { Producer } from '../src/producer/producer.entity';
 import { AppModule } from 'apps/transaction/src/app.module';
 import { TransactionsModule } from 'apps/transaction/src/transaction/transaction.module';
-import { async } from 'rxjs';
+const jsf=require('json-schema-faker');
 import {ApicurioSchemaService} from '../../../apicurioSchema/apicurio.service'
+import { BadRequestException } from '@nestjs/common';
 
 describe('ProducerControllerCreate', () => {
   let controller: ProducerController;
   let service: ProducerService;
   //let serviceTran: TransactionsService
   let producerRepository: Repository<Producer>;
-  let transactionRepository: Repository<Transaction>
+  let transactionRepository: Repository<Transaction>;
+  let serviceApicurio:ApicurioSchemaService;
 
 
   const PRODUCER_TOKEN=getRepositoryToken(Producer)
@@ -47,15 +49,15 @@ describe('ProducerControllerCreate', () => {
           create:jest.fn(),
           save:jest.fn(),
           findOne:jest.fn().mockResolvedValue({
-            transactionId: '8559eae7-3e15-4852-baa8-6c480b600dd1',
-            flowId:'hdsbshfbhfdb',
-            id:34,
-            tipo:'com.facephi.identityplatform.transaction.status_changed',
+            transactionId: 'b8b1ded2-72a0-4da4-8c74-5f09e2f38639',
+            flowId:'',
+            id:334,
+            type:'statusChanged',
             data:{
-              status:'iniciando',
-              step:'full',
+              status:'created',
+              step:'iniciado',
             },
-            time: '1959-01-26T01:40:19.0Z',
+            time: '2022-10-17T10:09:08.607+02:00',
             })
         },
         
@@ -69,12 +71,23 @@ describe('ProducerControllerCreate', () => {
 
     controller = module.get<ProducerController>(ProducerController);
     service = module.get<ProducerService>(ProducerService); 
+    serviceApicurio=module.get<ApicurioSchemaService>(ApicurioSchemaService); 
     //serviceTran=module.get<TransactionsService>(TransactionsService);
     transactionRepository=module.get<Repository<Transaction>>(SEGUNDO_TOKEN)
     producerRepository=module.get<Repository<Producer>>(PRODUCER_TOKEN)
   });
 
-
+const search={
+            'transactionId': 'b8b1ded2-72a0-4da4-8c74-5f09e2f38639',
+            'flowId':'26078740-244e-42ee-98f5-2452d0c8dc81',
+            'id':334,
+            'type':'statusChanged',
+            'data':{
+              'status':'created',
+              'step':'iniciado',
+            },
+            'time': '2022-10-17T10:09:08.607+02:00',
+}
 
   it('should be defined', () => {
     expect(service).toBeDefined();
@@ -86,32 +99,42 @@ describe('ProducerControllerCreate', () => {
 
   describe('createProducer',()=>{
     it('should create PRODUCER',async()=>{
-      const search=await service.create({
-        transactionId: '8559eae7-3e15-4852-baa8-6c480b600dd1',
-        flowId:'hkdsjbchjdsbjdsb',
-        id:34,
-        tipo:'com.facephi.identityplatform.transaction.status_changed',
-        data:{
-          status:"espernado",
-          step:"1º step",
-        },
-        time: '1959-01-26T01:40:19.0Z',
-      })
-     
-      const transaction = await transactionRepository.findOne({
-
-        where:{
-          transactionId: search.transactionId
-  
-        }
-          
-      });
-     if (transaction){
-       expect(producerRepository.save(search));
+      const schemaVal= await serviceApicurio.getSchema(search.flowId);
+      console.log("este es el schema",schemaVal)
+      
+      
+      if (!serviceApicurio.validate(schemaVal,search.data)){
+        
+          throw new BadRequestException('el schema no es correcto')
 
       }else{
-        console.log("errorrrrrr")
+        
+        console.log("el esquema es correcto");
+        
+        
+
+
+          const transaction = await transactionRepository.findOne({
+
+            where:{
+              transactionId: search.transactionId
+      
+            }
+              
+          });
+         if (transaction){
+          const req=await service.create(search)
+           expect(producerRepository.save(req));
+    
+          }else{
+            console.log("errorrrrrr")
+          }
+        
+        
+     
+      
       }
+      
       
       
     })

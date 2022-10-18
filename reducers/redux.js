@@ -101,6 +101,9 @@ const actions = bindActionCreators(
   { orderStatus, restockStatus, orderStep, restockStep },
   store.dispatch
 )
+
+// store.dispatch(orderStatus("dfdsfdsgf"))
+// store.dispatch(orderStep("dfdsfdf"))
 actions.orderStatus()
 actions.orderStatus()
 actions.restockStatus()
