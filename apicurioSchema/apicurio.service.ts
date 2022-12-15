@@ -12,6 +12,8 @@ export class ApicurioSchemaService{
         this.ajv = new Ajv();
         this.ajv.addKeyword('status');
         this.ajv.addKeyword('steps');
+        this.ajv.addKeyword('step');
+        
     }
 
     createSchema(schemaName:string,schemaDefinition:string){
@@ -19,17 +21,15 @@ export class ApicurioSchemaService{
     }
 
     async getSchema(schemaName:string){
-
-       
         try{
-            const res=await superagent(`http://localhost:8087/api/artifacts/${schemaName}`)    
+            const res=await superagent(`http://localhost:9000/api/artifacts/${schemaName}`)    
             if (res.status===200){
                 return res.body
             }
         
         }catch(error){
             console.log("error",error)
-            return false;
+            
         }
         
     }

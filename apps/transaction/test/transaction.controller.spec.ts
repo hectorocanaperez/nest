@@ -20,10 +20,11 @@ const mockerTransaction = {
     create: jest.fn((TransactionDto) => { 
       return {
         customId: "222-fff",
-        transactionId: 'sdjh78787',
+        transactionId: '',
         process: false,
         tipo:"status changed",
-        time: undefined,
+        time: '2022-10-17 10:09:08.607381',
+        data:{},
         
         ...TransactionDto, 
       };
@@ -53,11 +54,12 @@ const mockerTransaction = {
   
   it ('crea una transaction',()=>{
     expect(transaction.createTransaction({ 
-    transactionId:"c53917ce-41db-48c9-96cf-e6740bc35214",
-    flowId:"dfdfdsfsgf",
-    process:false,
-    customId:"sfdsagwfdg",
-    time:"",
+      transactionId:"",
+      process:false,
+      data:{},
+      flowId:"948031f7-0e28-4321-ad25-dde069f149b6",
+    customId:"111-bgbgb",
+    time:"2022-10-17 10:09:08.607381",
    
   })
     

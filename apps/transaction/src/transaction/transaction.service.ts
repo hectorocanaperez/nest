@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { PipeTransform, Injectable, ArgumentMetadata, BadRequestException } from '@nestjs/common';
+import { PipeTransform, Injectable, ArgumentMetadata, BadRequestException,Logger } from '@nestjs/common';
 import { TransactionDto } from './transaction.dto';
 import { Transaction } from './transaction.entity';
-//import { JsonSchemaService } from 'schemaRegistryLibrary/jsonService';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { response } from 'express';
@@ -11,11 +10,10 @@ import { validate } from 'class-validator';
 import { ApicurioSchemaService } from '../../../../apicurioSchema/apicurio.service';
 import Ajv from 'ajv';
 import { time } from 'console';
-//import jsf from "json-schema-faker";
-//import * as generate from 'json-schema-faker';
-//const {Client}=require('pg');
 const jsf=require('json-schema-faker');
-//import * as jsf from 'json-schema-faker'
+
+
+
 const ajv = new Ajv() 
 
 
@@ -28,7 +26,7 @@ export class TransactionsService {
     @InjectRepository(Transaction) private transactionRepository: Repository<Transaction>,
     private apicurioService:ApicurioSchemaService
   ){}
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  
   
   async getHello(){
     return "Hello World!";
@@ -39,46 +37,41 @@ export class TransactionsService {
     
   }
 
-  async create(req: TransactionDto) {
+  async create(req: TransactionDto):Promise<Transaction> {
 
-  const schemaVal= await this.apicurioService.getSchema(req.flowId);
-  console.log("este es el schema",schemaVal)
-  
-  
-  if (!this.apicurioService.validate(schemaVal,req.flowId)){
+    const schemaVal= await this.apicurioService.getSchema(req.flowId);
+    console.log("este es el schema",schemaVal)
     
-      throw new BadRequestException('el schema no es correcto')
-
-  }else{
-    
-    console.log("el esquema es correcto");
-  }
-  
-  var sample=jsf(schemaVal);
-
-  console.log("el resultado de faker es :",sample);
-
-
-  if (sample){
-          sample.process=false,
-          sample.customId='lorem',
-          sample.flowId=req.flowId,
-          sample.time=req.time
-          
-          
-
-          
-          return this.transactionRepository.save(sample as any);
+    if (!this.apicurioService.validate(schemaVal,req.flowId)){
       
-            }else{
+       
+        throw new BadRequestException('el schema no es correcto')
+
+    }else{
       
-            throw new BadRequestException('transaction not create');
-            }
-      }
+      console.log("el esquema es correcto");
     }
+    
+    var faker=jsf(schemaVal);
+
+    console.log("el resultado de faker es :",faker);
+    const transaction=new Transaction();
+    transaction.flowId=req.flowId,
+    transaction.customId=req.customId,
+    transaction.process=req.process
+    transaction.data=faker
+ 
+    if (transaction){
+
+        return this.transactionRepository.save(transaction);
+    }else{
+        throw new BadRequestException('transaction not create');
+    }
+  }
+}
 
 
-   
+
 
      
     

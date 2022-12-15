@@ -23,7 +23,13 @@ export class Transaction extends BaseEntity {
     @CreateDateColumn({nullable:true})
     time: string;
 
-    
+    @Column({type:'jsonb',
+    nullable:true})
+
+      data:{
+        status:string,
+        step:string,
+      }
 
     //status:string;
   transaction: string 

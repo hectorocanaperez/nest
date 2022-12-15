@@ -13,6 +13,7 @@ import { TransactionsService } from '../../../transaction/src/transaction/transa
 import { ApicurioSchemaService } from '../../../../apicurioSchema/apicurio.service';
 import { ApicurioModule } from '../../../../apicurioSchema/apicurio.module';
 
+
 @Module({
   imports: [ TypeOrmModule.forFeature([Producer]),TypeOrmModule.forFeature([Transaction]),ApicurioModule],
   controllers: [ProducerController,TransactionsController],

@@ -18,14 +18,16 @@ describe('PruebaController', () => {
 const mockerProducer = {
     create: jest.fn((ProducerDto) => { 
       return {
-        transactionId: 'sdjh78787',
+        transactionId: '99cee408-2add-483e-aa7e-d387e6273b92',
         id:34,
-        type:'',
+        process:false,
+        flowId:"415e0bd0-9bd5-406c-a6b3-84b7ef824cf5",
+        type:'StatusChanged',
         data:{
-          status:'esperando',
-          step:'2º step'
+          status:'created',
+          
         },
-        time:'',
+        time:'2022-10-19 16:30:00.194285',
         ...ProducerDto, 
       };
     }),
@@ -59,14 +61,15 @@ const mockerProducer = {
 
   it ('crea un producer',()=>{
     expect(controller.createProducer({
-      transactionId:"7660c4ad-daf4-4cc6-b1d0-03173b8b80c2",
-      flowId:"esse",
+      transactionId:"99cee408-2add-483e-aa7e-d387e6273b92",
+      flowId:"415e0bd0-9bd5-406c-a6b3-84b7ef824cf5",
       id:888,
+      process:false,
       time:"2022-10-17T08:09:08.607Z",
-      type:"step1",
+      type:"statusChanged",
       data:{
-        status:'esperando',
-        step:'2ºstep',
+        status:'created',
+        
       }
     })
     

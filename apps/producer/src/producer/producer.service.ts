@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 
 import  { Transaction } from '../../../transaction/src/transaction/transaction.entity';
 import { BadRequestException, Injectable } from '@nestjs/common';
@@ -10,25 +10,33 @@ import { Producer } from './producer.entity';
 import { ApicurioSchemaService } from '../../../../apicurioSchema/apicurio.service';
 import Ajv from 'ajv';
 
-const ajv = new Ajv() 
 
+
+
+const ajv = new Ajv() 
 
 @Injectable()
 export class ProducerService {
+  
   constructor(@InjectRepository(Producer) private producerRepository: Repository<Producer>,private apicurioService:ApicurioSchemaService,
   @InjectRepository(Transaction) private transactionRepository: Repository<Transaction>){}
+
+
+
 
   async getHello(){
     return "Hello World!";
   }
+  
   async getAll(): Promise<Producer[]> {
       return this.producerRepository.find()
   }
-  async create(req: ProducerDto) {
+
+  async create(req: ProducerDto):Promise<Producer> {
     const schemaVal= await this.apicurioService.getSchema(req.flowId);
     console.log("objeto",schemaVal)
     
-    if (!this.apicurioService.validate(schemaVal,req.data)){
+    if (!this.apicurioService.validate(schemaVal,req.flowId)){
         throw new BadRequestException('el schema no es correcto')
 
     }else{
@@ -41,13 +49,6 @@ export class ProducerService {
         }  
       
       });
-      
-      // const flowId = await this.transactionRepository.findOne({
-  
-      //   where:{
-      //     flowId: req.flowId
-      //   }
-      // });
   
       if (transactionS) {
   
@@ -55,11 +56,12 @@ export class ProducerService {
   
         producer.transactionId=transactionS.transactionId;
         producer.flowId=req.flowId;
-        producer.time = transactionS.time;
         producer.type = req.type;
         producer.data=req.data;
-        producer.data.status=req.data.status;
-        producer.data.step=req.data.step;
+        producer.process=req.process;
+        // producer.data.status=req.data.status;
+        // producer.data.step=req.data.step;
+        
         
         console.log("esto es el producer creado",producer)
         return this.producerRepository.save(producer);

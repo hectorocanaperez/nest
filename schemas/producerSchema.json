@@ -1,4 +1,5 @@
 {
+  "title" : "EVENT",
   "status":{
   "enum":[
     "created",
@@ -12,4 +13,4 @@
        "full"
    ]
   }
-  }
+}

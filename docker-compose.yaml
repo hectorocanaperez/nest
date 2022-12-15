@@ -8,6 +8,13 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Complutense123?
     ports:
-      - '5433:5433'
+      - '5433:5432'
     volumes:
       - ./postgres_data:/var/lib/postgresql
+  redis:
+    image: redis:latest
+    ports:
+      - '6379:6379'
+ 
+    
+

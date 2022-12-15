@@ -3,14 +3,14 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 
 import { ProducerModule } from '../src/producer/producer.module';
-import { AppModule } from '../src/app.module';
+import { AppModuleProducer } from '../src/app.module';
 
 describe('TransactionsController (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [AppModuleProducer],
     }).compile();
 
     app = moduleFixture.createNestApplication();

@@ -1,4 +1,5 @@
-import { IsArray, IsDate, IsDateString, isJSON, IsJSON, IsObject, IsString} from 'class-validator'
+import { IsArray, IsBoolean, IsDate, IsDateString, isJSON, IsJSON, IsObject, IsString} from 'class-validator';
+import { ApiProperty } from "@nestjs/swagger";
 //import { isStringObject } from 'util/types';
 
 export class ProducerDto {
@@ -8,22 +9,31 @@ export class ProducerDto {
 
 
     @IsString()
-    transactionId:string;
+    @ApiProperty()
+    transactionId?:string;
 
     @IsString()
+    @ApiProperty()
     flowId:string;
 
     @IsDateString()
-    time:string;
+    @ApiProperty()
+    time: string;
 
     @IsString()
+    @ApiProperty()
     type: string;
+
+    @IsBoolean()
+    @ApiProperty()
+    process:boolean;
     
 
     @IsObject()
+    @ApiProperty()
     data:{
-        status:string;
-        step:string;
+        // status:string;
+        // step:string;
     }
    
 }

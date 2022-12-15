@@ -42,10 +42,12 @@ describe('TransactionsControllerCreate', () => {
   });
 
   const search={
-    "flowId":"51afec2e-93c2-4ba8-9f3d-519dfab59312",
+    
+    "flowId":"948031f7-0e28-4321-ad25-dde069f149b6",
     "process":false,
     "customId":"",
     "time":"",
+    "data":{},
     transactionId: ''
   }
 

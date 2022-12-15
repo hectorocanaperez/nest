@@ -8,20 +8,21 @@ import { TransactionsModule } from 'apps/transaction/src/transaction/transaction
 //import { PostgresqlModule } from '@app/postgresql';
 import { ConsumerModule } from './consumer/consumer.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-    imports: [TypeOrmModule.forRoot({
-    autoLoadEntities: true,
-    type: 'postgres',
-    host: 'localhost',
-    port: 5433,
-    username: 'postgres',
-    password: 'Complutense123?',
-    database: 'actividad',
-    //entities: ['dist/**/*.entity{.ts,.js}'],
-    synchronize: true,
-    retryDelay: 3000,
-    retryAttempts: 10,
+    imports: [ConfigModule.forRoot(),
+      TypeOrmModule.forRoot({
+      host:process.env.DATABASE_HOST,
+      database:process.env.DATABASE_NAME,
+      username:process.env.DATABASE_USER,
+      password:process.env.DATABASE_PASSWORD,
+      autoLoadEntities: true,
+      type: 'postgres',
+      port: 5433,
+      synchronize: true,
+      retryDelay: 3000,
+      retryAttempts: 10,
   }),
     ScheduleModule.forRoot(),
      ConsumerModule,

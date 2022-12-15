@@ -6,7 +6,7 @@ import { type } from 'os';
 @Entity()
 export class Producer extends BaseEntity{
    @PrimaryGeneratedColumn()
-    id:string;
+    id?:string;
 
 
     @Column()
@@ -17,7 +17,7 @@ export class Producer extends BaseEntity{
     
     
 
-    @Column({nullable:true})
+    @CreateDateColumn({nullable:true})
     time: string;
 
     
@@ -25,13 +25,17 @@ export class Producer extends BaseEntity{
     @Column({nullable:true})
     type: string;
 
+    
+    @Column({nullable:true})
+    process:boolean;
+
 
     @Column({type:'jsonb',
         nullable:true})
     
     data:{
-        status:string;
-        step:string;
+        // status:string;
+        // step:string;
     }
    
   
@@ -40,6 +44,7 @@ export class Producer extends BaseEntity{
     @JoinColumn({ name: 'transactionId' })
     
     transaction: Transaction;
+  producer: {};
    
 }
 
