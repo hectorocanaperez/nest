@@ -38,14 +38,14 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+        # with:
+        #   fetch-depth: 0
       - uses: actions/setup-node@v2
         with:
           cache: 'npm'
-          node-version: '14.2'
+          node-version: '14'
       - name: Install dependencies
-        run: npm i
+        run: npm install
       - name: Build
         run: npm run build
       - name: Test
