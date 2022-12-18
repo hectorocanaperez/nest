@@ -2,8 +2,7 @@ name: Say hello
 
 on:
   push:
-    branches:
-      - master
+    branches: [disabled]
 
 jobs:
   hello_world:
