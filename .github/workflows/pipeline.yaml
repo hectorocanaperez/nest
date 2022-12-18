@@ -27,7 +27,7 @@ jobs:
       run: npm install
     - run: npm ci
     # - run: npm run build --if-present
-    - run: npm run testcontainer.spec.ts
+    - run: npm testcontainer.spec.ts
     
 
 
