@@ -3,13 +3,13 @@ import { INestApplication } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { Test, TestingModule } from "@nestjs/testing";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { ConsumerModule } from "./consumer/src/consumer/consumer.module";
+import { ConsumerModule } from "../apps/consumer/src/consumer/consumer.module";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Producer } from "./producer/src/producer/producer.entity";
-import { ProducerModule } from "./producer/src/producer/producer.module";
+import { Producer } from "../apps/producer/src/producer/producer.entity";
+import { ProducerModule } from "../apps/producer/src/producer/producer.module";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Transaction } from "./transaction/src/transaction/transaction.entity";
-import { TransactionsModule } from "./transaction/src/transaction/transaction.module";
+import { Transaction } from "../apps/transaction/src/transaction/transaction.entity";
+import { TransactionsModule } from "../apps/transaction/src/transaction/transaction.module";
 import { testCheck } from './e2e.test.';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const request = require('supertest');

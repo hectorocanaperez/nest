@@ -7,9 +7,9 @@ const request = require('supertest');
 import * as req from 'superagent'
 import { testCheck } from './e2e.test.';
 
-import { AppModule } from './transaction/src/app.module';
+import { AppModule } from '../apps/transaction/src/app.module';
 
-import {AppModuleProducer} from './producer/src/app.module';
+import {AppModuleProducer} from '../apps/producer/src/app.module';
 
 
 
