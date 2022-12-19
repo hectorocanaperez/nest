@@ -1,7 +1,6 @@
-//var req = require('superagent');
-
-import assert from 'assert';
-import { resolve } from 'path';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// import assert from 'assert';
+// import { resolve } from 'path';
 import * as req from 'superagent'
 
 
@@ -44,6 +43,7 @@ describe('TransactionEvent', () => {
       });
 
       expect(res.body.transactionId).not.toBe(undefined);
+      // eslint-disable-next-line prefer-const
       transactionId = res.body.transactionId;
     });
 

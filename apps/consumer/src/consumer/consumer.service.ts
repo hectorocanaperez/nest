@@ -16,7 +16,7 @@ import { ReducerStore } from '../../../../reducers/reducer.store';
 @Injectable()
 export class ConsumerService {
 
-  tiempo: number=20000;
+  tiempo=20000;
 
   constructor(
     @InjectRepository(Transaction) private transactionRepository: Repository<Transaction>,

@@ -1,17 +1,25 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { INestApplication } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { Test, TestingModule } from "@nestjs/testing";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConsumerModule } from "./consumer/src/consumer/consumer.module";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Producer } from "./producer/src/producer/producer.entity";
 import { ProducerModule } from "./producer/src/producer/producer.module";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Transaction } from "./transaction/src/transaction/transaction.entity";
 import { TransactionsModule } from "./transaction/src/transaction/transaction.module";
 import { testCheck } from './e2e.test.';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const request = require('supertest');
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-var-requires
 const { GenericContainer } = require("testcontainers");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require("path");
+// eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-unused-vars
 const redis = require("async-redis");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { DockerComposeEnvironment } = require("testcontainers");
 
 

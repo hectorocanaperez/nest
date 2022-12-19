@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { IsBoolean, IsDate, IsDateString, IsObject, isString, IsString,} from 'class-validator';
 import { ApiProperty } from "@nestjs/swagger";
 

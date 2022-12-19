@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Test, TestingModule } from '@nestjs/testing';
 import { TransactionsController } from '../src/transaction/transaction.controller';
 import { TransactionsService } from '../src/transaction/transaction.service';
@@ -73,7 +75,7 @@ describe('TransactionsControllerCreate', () => {
     
     console.log("el esquema es correcto");
   }
-  var sample=jsf(schemaVal);
+  const sample=jsf(schemaVal);
   if (sample){
     await service.create(search)
     expect(transactionRepository.save);

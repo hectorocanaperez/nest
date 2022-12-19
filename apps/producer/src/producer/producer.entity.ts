@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { Transaction } from '../../../transaction/src/transaction/transaction.entity';
 import {Entity,Column,PrimaryGeneratedColumn, BaseEntity, OneToMany, ManyToOne, JoinColumn, CreateDateColumn, Generated, UsingJoinColumnIsNotAllowedError} from 'typeorm'
 //import { JsonSchemaService } from 'libs/schemaRegistryLibrary/jsonService';
