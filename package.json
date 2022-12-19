@@ -87,7 +87,6 @@
   },
   "jest": {
     "modulePaths": [
-
       "<rootDir>"
     ],
     "moduleDirectories": [
