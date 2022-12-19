@@ -15,7 +15,7 @@ describe('TransactionEvent', () => {
       const res = await ( req.post('http://localhost:3003/transactions/transactions')).send({
 
         "transactionId":"",
-        "flowId":"d3fb817b-26e5-46d3-8ba4-187ba10a0451",
+        "flowId":"17d41e84-9dac-4ff3-8f86-84af998c9e8b",
         "process":false,
         "customId":"123-abc",
         "time":"2022-10-17 10:09:08.607381",
@@ -35,7 +35,7 @@ describe('TransactionEvent', () => {
       const res = await ( req.post('http://localhost:3003/transactions/transactions')).send({
 
         "transactionId":'',
-        "flowId":"d3fb817b-26e5-46d3-8ba4-187ba10a0451",
+        "flowId":"17d41e84-9dac-4ff3-8f86-84af998c9e8b",
         "process":false,
         "customId":"1234-abc",
         "time":"2022-10-17 10:09:08.607381",
@@ -80,8 +80,8 @@ describe('TransactionEvent', () => {
     it('should return a 201 status', async () => {
 
       const res = await ( req.post('http://localhost:3002/producers/producers')).send({
-        "transactionId":"99cee408-2add-483e-aa7e-d387e6273b92",
-        "flowId":"b51ec619-1adc-4dee-b11c-e4d608b78088",
+        "transactionId":"705ad8ae-a245-4f58-a394-05c96282b03b",
+        "flowId":"25627da7-a2f3-46a8-9995-48676b453327",
         "time":"2022-10-17 10:09:08.607381",
         "process":false,
         "type":"statusChanged",
