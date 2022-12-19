@@ -43,7 +43,7 @@ jobs:
       with:
         name: dist
         path: dist
-    - name: TEST UNITARIO (service)
+    - name: TEST UNITARIO
       run: npm run test
 
   TestsContainer:
@@ -52,11 +52,11 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DATABASE_HOST: localhost
-      DATABASE_NAME: actividad
-      DATABASE_USER: postgres
-      DATABASE_PASSWORD: Complutense123?
-      DATABASE_PORT: 5433
+      DB_HOST: localhost
+      DB_NAME: actividad
+      DB_USER: postgres
+      DB_PASSWORD: Complutense123?
+      DB_PORT: 5433
     steps:
     - uses: actions/checkout@v3
       with:
@@ -72,7 +72,7 @@ jobs:
         name: dist
         path: dist
     - name: TEST CONTAINER
-      run: npm run testcontainer
+      run: npm run test testcontainer.spec.ts
     
 
 
