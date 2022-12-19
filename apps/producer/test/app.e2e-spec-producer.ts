@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
+import request = require('supertest');
 
 import { ProducerModule } from '../src/producer/producer.module';
 import { AppModuleProducer } from '../src/app.module';
