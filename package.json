@@ -95,7 +95,8 @@
 
       "node_modules",
   
-      "src"
+      "<rootDir>/apps",
+      "<rootDir>/transaction/test"
   
     ],
     "moduleFileExtensions": [
