@@ -34,64 +34,45 @@ jobs:
     - uses: actions/checkout@v3
       with:
           fetch-depth: 0
-
     - uses: actions/setup-node@v3
-
       with:
-        node-version: 16.14
-        cache: npm
-
-    - name: Installs dependencias
-      run: npm i
-
+        node-version: '16.14'
+        cache: 'npm'
+    - run: npm i
     - uses: actions/download-artifact@v3
-
       with:
         name: dist
         path: dist
-
     - name: TEST UNITARIO (service)
       run: npm run test
 
   TestsContainer:
 
     needs: [build]
-
     runs-on: ubuntu-latest
 
     env:
-
-      DB_NAMETESTS: testContainer
-
-      DB_PORT_TEST: 5433
-
-      DB_USERNAME: postgres
-
-      DB_HOST: localhost
-
-      DB_PASSWORD: Complutense123?
-
+      DATABASE_HOST: localhost
+      DATABASE_NAME: actividad
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: Complutense123?
+      DATABASE_PORT: 5433
     steps:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-
     - uses: actions/setup-node@v3
-
       with:
         node-version: 16.14
         cache: npm
-
     - name: Install dependencias
       run: npm i
-
     - uses: actions/download-artifact@v3
       with:
         name: dist
         path: dist
-
     - name: TEST CONTAINER
-      run: npm run testcontainer.spec.ts
+      run: npm run testcontainer
     
 
 
