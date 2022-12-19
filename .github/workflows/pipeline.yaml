@@ -24,40 +24,31 @@ jobs:
   TestUnitario:
 
     needs: [build]
-
     runs-on: ubuntu-latest
 
     steps:
-
-      - uses: actions/checkout@v3
-
-        with:
-
+    - uses: actions/checkout@v3
+      with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v3
 
-        with:
+      with:
+        node-version: 16.14
+        cache: npm
 
-          node-version: 16.14
+    - name: Installs dependencias
+      run: npm --frozen-lockfile
 
-          cache: npm
+    - uses: actions/download-artifact@v3
 
-      - name: Installs dependencias
+      with:
+        name: dist
+        path: dist
 
-        run: yarn --frozen-lockfile
+    - name: TEST UNITARIO (service)
+      run: npm test
 
-      - uses: actions/download-artifact@v3
-
-        with:
-
-          name: dist
-
-          path: dist
-
-      - name: TEST UNITARIO (service)
-
-        run: npm test
   TestsContainer:
 
     needs: [build]
@@ -76,39 +67,27 @@ jobs:
 
       DB_PASSWORD: Complutense123?
 
-      
-
     steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
-      - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
 
-        with:
+      with:
+        node-version: 16.14
+        cache: npm
 
-          fetch-depth: 0
+    - name: Install dependencias
+      run: npm --frozen-lockfile
 
-      - uses: actions/setup-node@v3
+    - uses: actions/download-artifact@v3
+      with:
+        name: dist
+        path: dist
 
-        with:
-
-          node-version: 16.14
-
-          cache: npm
-
-      - name: Install dependencias
-
-        run: npm --frozen-lockfile
-
-      - uses: actions/download-artifact@v3
-
-        with:
-
-          name: dist
-
-          path: dist
-
-      - name: TEST CONTAINER
-
-        run: npm run testcontainer.spec.ts
+    - name: TEST CONTAINER
+      run: npm run testcontainer.spec.ts
     
 
 
