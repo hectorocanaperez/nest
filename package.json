@@ -88,18 +88,15 @@
   "jest": {
     "modulePaths": [
 
-      "<rootDir>",
-      "<rootDir>/test",
-      "<rootDir>/apps/transaction/test"
+      "<rootDir>"
       
     ],
     "moduleDirectories": [
 
       "node_modules",
-      "src",
+      "src"
   
-      "<rootDir>/test",
-      "<rootDir>/apps/transaction/test"
+     
   
     ],
     "moduleFileExtensions": [
