@@ -20,7 +20,95 @@ jobs:
     - run: npm i
     - run: npm run lint
     - run: npm run build --if-present
-    - run: npm test
+    # - run: npm test
+  TestUnitario:
+
+    needs: [build]
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+        with:
+
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+
+        with:
+
+          node-version: 16.14
+
+          cache: npm
+
+      - name: Installs dependencias
+
+        run: yarn --frozen-lockfile
+
+      - uses: actions/download-artifact@v3
+
+        with:
+
+          name: dist
+
+          path: dist
+
+      - name: TEST UNITARIO (service)
+
+        run: npm test
+  TestsContainer:
+
+    needs: [build]
+
+    runs-on: ubuntu-latest
+
+    env:
+
+      DB_NAMETESTS: testContainer
+
+      DB_PORT_TEST: 5433
+
+      DB_USERNAME: postgres
+
+      DB_HOST: localhost
+
+      DB_PASSWORD: Complutense123?
+
+      
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+        with:
+
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+
+        with:
+
+          node-version: 16.14
+
+          cache: npm
+
+      - name: Install dependencias
+
+        run: npm --frozen-lockfile
+
+      - uses: actions/download-artifact@v3
+
+        with:
+
+          name: dist
+
+          path: dist
+
+      - name: TEST CONTAINER
+
+        run: npm run testcontainer.spec.ts
     
 
 
