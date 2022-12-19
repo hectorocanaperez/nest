@@ -38,7 +38,7 @@ jobs:
         cache: npm
 
     - name: Installs dependencias
-      run: npm --frozen-lockfile
+      run: npm i
 
     - uses: actions/download-artifact@v3
 
@@ -47,7 +47,7 @@ jobs:
         path: dist
 
     - name: TEST UNITARIO (service)
-      run: npm test
+      run: npm run test
 
   TestsContainer:
 
@@ -79,7 +79,7 @@ jobs:
         cache: npm
 
     - name: Install dependencias
-      run: npm --frozen-lockfile
+      run: npm i
 
     - uses: actions/download-artifact@v3
       with:
