@@ -1,4 +1,4 @@
-import { IsArray, IsBoolean, IsDate, IsDateString, isJSON, IsJSON, IsObject, IsString} from 'class-validator';
+import { IsBoolean, IsDateString, IsObject, IsString} from 'class-validator';
 import { ApiProperty } from "@nestjs/swagger";
 //import { isStringObject } from 'util/types';
 

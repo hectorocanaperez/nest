@@ -7,7 +7,7 @@ import { Transaction } from './transaction.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { response } from 'express';
-import { validate } from 'class-validator';
+
 import { ApicurioSchemaService } from '../../../../apicurioSchema/apicurio.service';
 import Ajv from 'ajv';
 import { time } from 'console';

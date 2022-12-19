@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { IsBoolean, IsDate, IsDateString, IsObject, isString, IsString,} from 'class-validator';
+import { IsBoolean, IsDateString, IsObject, IsString,} from 'class-validator';
 import { ApiProperty } from "@nestjs/swagger";
 
 export class TransactionDto {

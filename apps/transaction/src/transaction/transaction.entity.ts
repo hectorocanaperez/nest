@@ -1,5 +1,5 @@
-import { Producer } from 'apps/producer/src/producer/producer.entity';
-import { IsEmpty, IsString, UUIDVersion } from 'class-validator';
+// import { Producer } from 'apps/producer/src/producer/producer.entity';
+import { IsString } from 'class-validator';
 import {Entity,Column,PrimaryGeneratedColumn,BaseEntity, CreateDateColumn, OneToMany, ManyToOne, JoinColumn, Generated} from 'typeorm'
 
 @Entity()
