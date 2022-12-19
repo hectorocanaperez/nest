@@ -65,7 +65,7 @@ afterAll(async () => {
 //     await redisClient.quit();
 //     await environment.down();
 // });
-it('Check', async () => {
+it('CheckTest', async () => {
     let transactionId: string;
 
      await request(app.getHttpServer())
