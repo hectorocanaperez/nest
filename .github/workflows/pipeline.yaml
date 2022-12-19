@@ -50,7 +50,7 @@ jobs:
 
     needs: [build]
     runs-on: ubuntu-latest
-
+    
     env:
       DB_HOST: localhost
       DB_NAME: actividad
