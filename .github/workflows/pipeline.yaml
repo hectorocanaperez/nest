@@ -22,7 +22,6 @@ jobs:
       with:
         name: dist
         path: dist
-
   Test:
     needs: [build]
     runs-on: ubuntu-latest
