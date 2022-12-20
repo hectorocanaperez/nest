@@ -52,11 +52,13 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      DB_HOST: localhost
-      DB_NAME: actividad
-      DB_USER: postgres
-      DB_PASSWORD: Complutense123?
-      DB_PORT: 5433
+      autoLoadEntities: true,
+      type: postgres
+      host: localhost
+      database: actividad
+      username: postgres
+      password: Complutense123?
+      port: 5433
     steps:
     - uses: actions/checkout@v3
       with:
