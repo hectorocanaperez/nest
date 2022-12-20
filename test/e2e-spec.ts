@@ -6,16 +6,8 @@ import { HttpStatus, INestApplication } from '@nestjs/common';
 const request = require('supertest');
 import * as req from 'superagent'
 import { testCheck } from './e2e.test.';
-
 import { AppModule } from '../apps/transaction/src/app.module';
-
 import {AppModuleProducer} from '../apps/producer/src/app.module';
-
-
-
-
-
-
 
 async function time() {
    await new Promise(resolve => setTimeout(resolve,3000))
