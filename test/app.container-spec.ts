@@ -41,16 +41,16 @@ beforeAll(async () => {
     const moduleFixture:TestingModule = await Test.createTestingModule({
         imports: [
             ConfigModule.forRoot(),    
-            TypeOrmModule.forRoot({
-                    type: 'postgres',
-                    host:process.env.DATABASE_HOST,
-                    port: 5433,
-                    database:process.env.DATABASE_NAME,
-                    username:process.env.DATABASE_USER,
-                    password:process.env.DATABASE_PASSWORD,
-                    autoLoadEntities: true,
-                    synchronize: false,
-                }),
+            // TypeOrmModule.forRoot({
+            //         type: 'postgres',
+            //         host:process.env.DATABASE_HOST,
+            //         port: 5433,
+            //         database:process.env.DATABASE_NAME,
+            //         username:process.env.DATABASE_USER,
+            //         password:process.env.DATABASE_PASSWORD,
+            //         autoLoadEntities: true,
+            //         synchronize: false,
+            //     }),
                 TransactionsModule,ProducerModule,ConsumerModule
         ],
     }).compile();
