@@ -16,6 +16,16 @@ describe('TransactionsControllerCreate', () => {
   let transactionRepository: Repository<Transaction>;
 
   const TRANSACTION_TOKEN=getRepositoryToken(Transaction)
+  const apicurioService = { getSchema: () => ({
+    "transactionId":"",
+    "flowId":"17d41e84-9dac-4ff3-8f86-84af998c9e8b",
+    "process":false,
+    "customId":"1245-cbab",
+    "time":"2022-10-17 10:09:08.607381",
+    "data":{}
+    
+   
+})};
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -31,8 +41,8 @@ describe('TransactionsControllerCreate', () => {
     ], 
         
     })
-    // .overrideProvider(TransactionsService) 
-    // .useValue(resultService)
+    .overrideProvider(ApicurioSchemaService) 
+    .useValue(apicurioService)
     .compile();
 
     controller = module.get<TransactionsController>(TransactionsController);
