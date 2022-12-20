@@ -48,12 +48,13 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      DB_HOST: postgres
-      DB_NAME: actividad
-      DB_USER: postgres
-      DB_PASSWORD: Complutense123?
-      DB_PORT: 5433
+      DATABASE_HOST: postgres
+      DATABASE_NAME: actividad
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: Complutense123?
+      DATABASE_PORT: 5433
     steps:
+    - run: printenv
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
