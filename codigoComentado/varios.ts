@@ -287,3 +287,159 @@
 //   });
 
 // });
+
+
+
+//prueba test unitario transaction controller-----transaction.controller.spec.ts
+
+// import { Test, TestingModule } from '@nestjs/testing';
+// import {ApicurioSchemaService} from '../../../apicurioSchema/apicurio.service'
+// import { TransactionsController } from '../src/transaction/transaction.controller';
+// import { TransactionsService } from '../src/transaction/transaction.service';
+
+// describe('PruebaController', () => {
+//   //let Appcontroller: AppController;
+//   let transaction: TransactionsController;
+//   let service:TransactionsService;
+  
+// const mockerTransaction = {
+//     create: jest.fn((TransactionDto) => { 
+//       return {
+//         customId: "222-fff",
+//         transactionId: '',
+//         process: false,
+//         tipo:"status changed",
+//         time: '2022-10-17 10:09:08.607381',
+//         data:{},
+        
+//         ...TransactionDto, 
+//       };
+//     }),
+//   };
+
+//   beforeEach(async () => {
+//     const module: TestingModule = await Test.createTestingModule({ 
+//       controllers: [TransactionsController],
+//       providers: [TransactionsService,ApicurioSchemaService] ,  
+//     })
+//     .overrideProvider(TransactionsService)
+//     .useValue(mockerTransaction)
+
+   
+//     .compile();
+
+//     //Appcontroller = module.get<AppController>(AppController); 
+//     transaction=module.get<TransactionsController>(TransactionsController)
+//     //service=module.get<TransactionsService>('TRANS_SERVICE')
+//   });
+
+
+//   it('should be defined', () => {
+//     expect(transaction).toBeDefined();
+//   });
+  
+//   it ('crea una transaction',()=>{
+//     expect(transaction.createTransaction({ 
+//       transactionId:"",
+//       process:false,
+//       data:{},
+//       flowId:"17d41e84-9dac-4ff3-8f86-84af998c9e8b",
+//     customId:"111-bgbgb",
+//     time:"2022-10-17 10:09:08.607381",
+   
+//   })
+    
+//   )})
+  
+// });
+
+
+//prueba test unitario transaction service------transaction.service.spec.ts
+
+// import { Test, TestingModule } from '@nestjs/testing';
+// import { TransactionsController } from '../src/transaction/transaction.controller';
+// import { TransactionsService } from '../src/transaction/transaction.service';
+// import { Transaction } from '../src/transaction/transaction.entity';
+// import { getRepositoryToken } from '@nestjs/typeorm';
+// import { Repository } from 'typeorm';
+// import {ApicurioSchemaService} from '../../../apicurioSchema/apicurio.service'
+// import { BadRequestException } from '@nestjs/common';
+// const jsf=require('json-schema-faker');
+
+// describe('TransactionsControllerCreate', () => {
+//   let controller: TransactionsController;
+//   let service: TransactionsService;
+//   let serviceApicurio:ApicurioSchemaService
+//   let transactionRepository: Repository<Transaction>;
+
+//   const TRANSACTION_TOKEN=getRepositoryToken(Transaction)
+
+//   beforeEach(async () => {
+//     const module: TestingModule = await Test.createTestingModule({
+//       controllers: [TransactionsController],
+//       providers: [TransactionsService,ApicurioSchemaService,
+//       {
+//         provide:TRANSACTION_TOKEN,
+//         useValue:{
+//           create:jest.fn(),
+//           save:jest.fn(),
+//         }
+//       },
+//     ], 
+        
+//     })
+//     // .overrideProvider(TransactionsService) 
+//     // .useValue(resultService)
+//     .compile();
+
+//     controller = module.get<TransactionsController>(TransactionsController);
+//     service = module.get<TransactionsService>(TransactionsService); 
+//     serviceApicurio=module.get<ApicurioSchemaService>(ApicurioSchemaService); 
+//     transactionRepository=module.get<Repository<Transaction>>(TRANSACTION_TOKEN)
+//   });
+
+//   const search={
+    
+//     "flowId":"17d41e84-9dac-4ff3-8f86-84af998c9e8b",
+//     "process":false,
+//     "customId":"",
+//     "time":"",
+//     "data":{},
+//     transactionId: ''
+//   }
+
+//   it('should be defined', () => {
+//     expect(service).toBeDefined();
+//   });
+
+//   it ('transactionrepository be definde',()=>{
+//     expect(transactionRepository).toBeDefined();
+//   })
+
+//   describe('createTransaction',()=>{
+//     it('should create transaction',async()=>{
+//   const schemaVal= await serviceApicurio.getSchema(search.flowId);
+//   console.log("este es el schema",schemaVal)
+  
+  
+//   if (!serviceApicurio.validate(schemaVal,search.flowId)){
+    
+//       throw new BadRequestException('el schema no es correcto')
+
+//   }else{
+    
+//     console.log("el esquema es correcto");
+//   }
+//   const sample=jsf(schemaVal);
+//   if (sample){
+//     await service.create(search)
+//     expect(transactionRepository.save);
+//   }
+     
+//     })
+//   })
+//   it('should see hello world',async()=>{
+//     await service.getHello()
+//   })
+
+// });
