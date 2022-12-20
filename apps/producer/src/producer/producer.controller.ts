@@ -2,7 +2,7 @@
 import { Body, Controller, Get, Post, ValidationPipe } from '@nestjs/common';
 import { ProducerService } from './producer.service';
 import { ProducerDto } from './producer.dto';
-import { Producer } from './producer.entity';
+// import { Producer } from './producer.entity';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 
@@ -81,7 +81,7 @@ export class ProducerController {
    description:'create a new event'
  })
  @ApiBody
-// ({type:ProducerDto})
+
  ({
    schema:{
      type:'object',

@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { Transaction } from '../../../transaction/src/transaction/transaction.entity';
-import {Entity,Column,PrimaryGeneratedColumn, BaseEntity, OneToMany, ManyToOne, JoinColumn, CreateDateColumn, Generated, UsingJoinColumnIsNotAllowedError} from 'typeorm'
-//import { JsonSchemaService } from 'libs/schemaRegistryLibrary/jsonService';
-import { type } from 'os';
+import {Entity,Column,PrimaryGeneratedColumn, BaseEntity, ManyToOne, JoinColumn, CreateDateColumn} from 'typeorm'
+
 
 @Entity()
 export class Producer extends BaseEntity{
@@ -45,7 +44,7 @@ export class Producer extends BaseEntity{
     @JoinColumn({ name: 'transactionId' })
     
     transaction: Transaction;
-  producer: {};
+    producer: {};
    
 }
 

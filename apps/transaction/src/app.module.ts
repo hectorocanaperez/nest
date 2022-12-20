@@ -3,13 +3,9 @@ import {ConfigModule} from '@nestjs/config';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-//import { PostgresqlModule } from '@app/postgresql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TransactionsModule } from './transaction/transaction.module';
-//import { PostgresqlModule } from '@app/postgresql';
-import { ProducerService } from '../../producer/src/producer/producer.service';
-import { ProducerModule } from '../../producer/src/producer/producer.module';
-import { ConsumerModule } from '../../consumer/src/consumer/consumer.module';
+
 
 
 

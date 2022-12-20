@@ -1,9 +1,5 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Producer } from 'apps/producer/src/producer/producer.entity';
-import { Transaction } from 'apps/transaction/src/transaction/transaction.entity';
-//import { ConsumerController } from './consumer.controller';
-//import { Consumer } from './consumer.entity';
 import { ApicurioSchemaService } from './apicurio.service';
 
 @Module({

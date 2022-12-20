@@ -1,12 +1,9 @@
 
-import { Inject, Injectable,Logger } from '@nestjs/common';
+import { Injectable,Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository,DataSource } from 'typeorm';
 import { Transaction } from '../../../transaction/src/transaction/transaction.entity';
 import { Producer } from '../../../producer/src/producer/producer.entity';
-// import { ProducerDto } from 'apps/producer/src/producer/producer.dto';
-// import { ConsumerModule } from './consumer.module';
-// import postgres from 'postgres';
 import { ReducerStore } from '../../../../reducers/reducer.store';
 
 
@@ -89,8 +86,8 @@ export class ConsumerService {
     const reducerSearch= this.reducerStore.getReducer('statusChanged');
     const reducerSearchStep=this.reducerStore.getReducer('stepChanged')
       
-    // console.log("reduxStatus",reducerSearch);
-    // console.log("reduxStep",reducerSearchStep);
+    console.log("reduxStatus",reducerSearch);
+    console.log("reduxStep",reducerSearchStep);
 
   }
   TiempoConsumers(){

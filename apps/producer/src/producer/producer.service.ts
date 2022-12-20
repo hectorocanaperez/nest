@@ -3,8 +3,7 @@
 import  { Transaction } from '../../../transaction/src/transaction/transaction.entity';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { TransactionDto } from 'apps/transaction/src/transaction/transaction.dto';
-import { Repository,DataSource, TransactionNotStartedError } from 'typeorm';
+import { Repository} from 'typeorm';
 import { ProducerDto } from './producer.dto';
 import { Producer } from './producer.entity';
 import { ApicurioSchemaService } from '../../../../apicurioSchema/apicurio.service';
@@ -13,7 +12,7 @@ import Ajv from 'ajv';
 
 
 
-const ajv = new Ajv() 
+// const ajv = new Ajv() 
 
 @Injectable()
 export class ProducerService {

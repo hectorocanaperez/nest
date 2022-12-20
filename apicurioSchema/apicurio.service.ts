@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { Injectable } from "@nestjs/common";
-import * as Request from 'superagent'
+// import * as Request from 'superagent'
 import Ajv from 'ajv';
 const superagent=require("superagent")
 

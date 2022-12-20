@@ -1,6 +1,6 @@
 // import { Producer } from 'apps/producer/src/producer/producer.entity';
 import { IsString } from 'class-validator';
-import {Entity,Column,PrimaryGeneratedColumn,BaseEntity, CreateDateColumn, OneToMany, ManyToOne, JoinColumn, Generated} from 'typeorm'
+import {Entity,Column,PrimaryGeneratedColumn,BaseEntity, CreateDateColumn} from 'typeorm'
 
 @Entity()
 export class Transaction extends BaseEntity {
@@ -31,6 +31,6 @@ export class Transaction extends BaseEntity {
       }
 
     //status:string;
-  transaction: string 
+    transaction: string 
     
 }

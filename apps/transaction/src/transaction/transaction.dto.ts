@@ -31,13 +31,4 @@ export class TransactionDto {
         
     }
 
-    
-
-    //status:string;
-   
-
-    
-    
-    
-    
 }

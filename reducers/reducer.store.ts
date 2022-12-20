@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {  Injectable } from '@nestjs/common';
 import { Reducer } from './reducer.type';
 import * as StepChanged from './step.changed.reducer';
 import * as StatusChanged from './status.changed.reducer';
