@@ -36,11 +36,12 @@ export class ProducerService {
     const schemaVal= await this.apicurioService.getSchema(req.flowId);
     console.log("objeto",schemaVal)
     
-    if (!this.apicurioService.validate(schemaVal,req.flowId)){
+    if (!schemaVal){
         throw new BadRequestException('el schema no es correcto')
 
     }else{
       console.log("el esquema es correcto");
+      
       
       const transactionS = await this.transactionRepository.findOne({
         

@@ -9,7 +9,6 @@ export class Transaction extends BaseEntity {
     transactionId:string;
 
     @Column({nullable:true})
-    @IsString()
    //@Generated('uuid')
    flowId:string;
 

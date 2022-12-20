@@ -4,9 +4,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository,DataSource } from 'typeorm';
 import { Transaction } from '../../../transaction/src/transaction/transaction.entity';
 import { Producer } from '../../../producer/src/producer/producer.entity';
-import { ProducerDto } from 'apps/producer/src/producer/producer.dto';
-import { ConsumerModule } from './consumer.module';
-import postgres from 'postgres';
+// import { ProducerDto } from 'apps/producer/src/producer/producer.dto';
+// import { ConsumerModule } from './consumer.module';
+// import postgres from 'postgres';
 import { ReducerStore } from '../../../../reducers/reducer.store';
 
 

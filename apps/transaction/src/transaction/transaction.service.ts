@@ -43,14 +43,15 @@ export class TransactionsService {
     const schemaVal= await this.apicurioService.getSchema(req.flowId);
     console.log("este es el schema",schemaVal)
     
-    if (!this.apicurioService.validate(schemaVal,req.flowId)){
-      
-       
-        throw new BadRequestException('el schema no es correcto')
+    if (!schemaVal){
+        
+      throw new BadRequestException('la validadcion del schema esta mal')
+
 
     }else{
       
       console.log("el esquema es correcto");
+      
     }
     
     var faker=jsf(schemaVal);

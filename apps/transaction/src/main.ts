@@ -9,12 +9,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   //app.useGlobalFilters(new HttpExceptionFilter());
   
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist:true,
-      forbidNonWhitelisted:true,
-    }),
-  )
+  // app.useGlobalPipes(
+  //   new ValidationPipe({
+  //     whitelist:true,
+  //     forbidNonWhitelisted:true,
+  //   }),
+  // )
 
   const config = new DocumentBuilder()
   .setTitle('transactions')

@@ -10,7 +10,9 @@ import { ApicurioSchemaService } from './apicurio.service';
   imports: [
     
     TypeOrmModule.forRoot({
-      autoLoadEntities: true,
+
+      
+    autoLoadEntities: true,
     type: 'postgres',
     host: 'localhost',
     port: 5433,

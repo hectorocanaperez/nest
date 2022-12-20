@@ -63,8 +63,8 @@ jobs:
         fetch-depth: 0
     - uses: actions/setup-node@v3
       with:
-        node-version: 16.14
-        cache: npm
+        node-version: '16.14'
+        cache: 'npm'
     - name: Install dependencias
       run: npm i
     - uses: actions/download-artifact@v3
