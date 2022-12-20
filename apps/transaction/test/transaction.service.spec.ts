@@ -61,23 +61,23 @@ describe('TransactionsControllerCreate', () => {
 
   describe('createTransaction',()=>{
     it('should create transaction',async()=>{
-  const schemaVal= await serviceApicurio.getSchema(search.flowId);
-  console.log("este es el schema",schemaVal)
+//   const schemaVal= await serviceApicurio.getSchema(search.flowId);
+//   console.log("este es el schema",schemaVal)
   
   
-  if (!serviceApicurio.validate(schemaVal,search.flowId)){
+//   if (!serviceApicurio.validate(schemaVal,search.flowId)){
     
-      throw new BadRequestException('el schema no es correcto')
+//       throw new BadRequestException('el schema no es correcto')
 
-  }else{
+//   }else{
     
-    console.log("el esquema es correcto");
-  }
-  const sample=jsf(schemaVal);
-  if (sample){
+//     console.log("el esquema es correcto");
+//   }
+//   const sample=jsf(schemaVal);
+//   if (sample){
     await service.create(search)
     expect(transactionRepository.save);
-  }
+  
      
     })
   })
