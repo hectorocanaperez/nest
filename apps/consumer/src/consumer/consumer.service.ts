@@ -28,7 +28,6 @@ export class ConsumerService {
   async actualizarConsumers(){
  
    
-
    
   const listaTransactions= await this.transactionRepository.find({
       

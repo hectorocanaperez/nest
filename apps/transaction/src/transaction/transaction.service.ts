@@ -35,10 +35,11 @@ export class TransactionsService {
 
     const schemaVal= await this.apicurioService.getSchema(req.flowId);
     console.log("este es el schema",schemaVal)
+
     
     if (!schemaVal){
         
-      throw new BadRequestException('la validadcion del schema esta mal')
+      throw new BadRequestException('el schema esta mal')
 
 
     }else{
