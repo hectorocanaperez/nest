@@ -37,7 +37,7 @@ describe('TransactionsControllerCreate', () => {
 
     controller = module.get<TransactionsController>(TransactionsController);
     service = module.get<TransactionsService>(TransactionsService); 
-    serviceApicurio=module.get<ApicurioSchemaService>(ApicurioSchemaService); 
+    //serviceApicurio=module.get<ApicurioSchemaService>(ApicurioSchemaService); 
     transactionRepository=module.get<Repository<Transaction>>(TRANSACTION_TOKEN)
   });
 
