@@ -14,7 +14,7 @@ jobs:
     - uses: actions/setup-node@v3
       with:
           cache: 'npm'
-          node-version: '16.14'
+          node-version: '16.x'
     # - name: Install dependencies
     #   run: npm install
     - run: npm i
@@ -36,7 +36,7 @@ jobs:
           fetch-depth: 0
     - uses: actions/setup-node@v3
       with:
-        node-version: '16.14'
+        node-version: '16.x'
         cache: 'npm'
     - run: npm i
     - uses: actions/download-artifact@v3
@@ -44,7 +44,7 @@ jobs:
         name: dist
         path: dist
     - name: TEST UNITARIO
-      run: npm run test
+      run: npm test
 
   TestsContainer:
 
@@ -63,7 +63,7 @@ jobs:
         fetch-depth: 0
     - uses: actions/setup-node@v3
       with:
-        node-version: '16.14'
+        node-version: '16.x'
         cache: 'npm'
     - name: Install dependencias
       run: npm i
