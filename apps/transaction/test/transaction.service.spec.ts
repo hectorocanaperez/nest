@@ -3,7 +3,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TransactionsController } from '../src/transaction/transaction.controller';
 import { TransactionsService } from '../src/transaction/transaction.service';
-import { TransactionDto } from '../src/transaction/transaction.dto';
 import { Transaction } from '../src/transaction/transaction.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';

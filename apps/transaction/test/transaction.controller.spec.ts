@@ -1,14 +1,10 @@
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { BadRequestException, Controller } from '@nestjs/common';
+
 import { Test, TestingModule } from '@nestjs/testing';
 import {ApicurioSchemaService} from '../../../apicurioSchema/apicurio.service'
-import { create } from 'domain';
-import { AppController } from '../src/app.controller';
-import { AppService } from '../src/app.service';
 import { TransactionsController } from '../src/transaction/transaction.controller';
-import { TransactionDto } from '../src/transaction/transaction.dto';
 import { TransactionsService } from '../src/transaction/transaction.service';
 
 describe('PruebaController', () => {
