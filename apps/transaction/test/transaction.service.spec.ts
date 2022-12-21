@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import { Test, TestingModule } from '@nestjs/testing';
 import { TransactionsController } from '../src/transaction/transaction.controller';
 import { TransactionsService } from '../src/transaction/transaction.service';
@@ -7,8 +6,8 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import {ApicurioSchemaService} from '../../../apicurioSchema/apicurio.service'
 import { BadRequestException } from '@nestjs/common';
-// import jsf from 'json-schema-faker';
-const jsf=require('json-schema-faker');
+import jsf from 'json-schema-faker';
+// const jsf=require('json-schema-faker');
 
 describe('TransactionsControllerCreate', () => {
   let controller: TransactionsController;
@@ -48,18 +47,18 @@ describe('TransactionsControllerCreate', () => {
 
     controller = module.get<TransactionsController>(TransactionsController);
     service = module.get<TransactionsService>(TransactionsService); 
-    serviceApicurio=module.get<ApicurioSchemaService>(ApicurioSchemaService); 
+    //serviceApicurio=module.get<ApicurioSchemaService>(ApicurioSchemaService); 
     transactionRepository=module.get<Repository<Transaction>>(TRANSACTION_TOKEN)
   });
 
   const search={
     
-    "transactionId":"",
     "flowId":"7aee2057-b1a3-424f-a057-8b817632a7ae",
     "process":false,
-    "customId":"1245-cbab",
-    "time":"2022-10-17 10:09:08.607381",
-    "data":{}
+    "customId":"",
+    "time":"",
+    "data":{},
+    transactionId: ''
   }
 
   it('should be defined', () => {
@@ -72,42 +71,29 @@ describe('TransactionsControllerCreate', () => {
 
   describe('createTransaction',()=>{
     it('should create transaction',async()=>{
-
-    // const schemaVal= await apicurioService.getSchema(req.flowId);
-    // try{
-    //     var faker=jsf(schemaVal);
-    //     console.log("este es el schema",schemaVal)
-    //     const validar=await this.apicurioService.validate(schemaVal,faker)
-    //   }catch(e){
-    //     console.log("error",e)
-    //     throw new BadRequestException('el schema no es correcto')
-    //   }
-  const schemaVal= await serviceApicurio.getSchema(search.flowId);
-  console.log("este es el schema",schemaVal)
-    const sample=jsf(schemaVal);
+      
+//   const schemaVal= await serviceApicurio.getSchema(search.flowId);
+//   console.log("este es el schema",schemaVal)
   
-  if (!serviceApicurio.validate(schemaVal,sample)){
+  
+//   if (!serviceApicurio.validate(schemaVal,search.flowId)){
     
-      throw new BadRequestException('el schema no es correcto')
+//       throw new BadRequestException('el schema no es correcto')
 
-  }else{
+//   }else{
     
-    console.log("el esquema es correcto");
+//     console.log("el esquema es correcto");
+//   }
+//   const sample=jsf(schemaVal);
+//   if (sample){
     await service.create(search)
     expect(transactionRepository.save);
-  }
-
-  // if (sample){
-    
-    
-  // }
+  
+     
+    })
+  })
   it('should see hello world',async()=>{
     await service.getHello()
-
-  
-  })
   })
 
-})
 });
-  
