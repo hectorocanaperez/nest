@@ -37,6 +37,7 @@ export class ProducerService {
      
       console.log("este es el schema",schemaVal)
       const validar=await this.apicurioService.validate(schemaVal,req.data)
+      
     }catch(e){
       console.log("error",e)
       throw new BadRequestException('el schema no es correcto')

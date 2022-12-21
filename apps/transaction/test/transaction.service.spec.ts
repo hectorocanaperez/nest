@@ -48,18 +48,18 @@ describe('TransactionsControllerCreate', () => {
 
     controller = module.get<TransactionsController>(TransactionsController);
     service = module.get<TransactionsService>(TransactionsService); 
-    //serviceApicurio=module.get<ApicurioSchemaService>(ApicurioSchemaService); 
+    serviceApicurio=module.get<ApicurioSchemaService>(ApicurioSchemaService); 
     transactionRepository=module.get<Repository<Transaction>>(TRANSACTION_TOKEN)
   });
 
   const search={
     
+    "transactionId":"",
     "flowId":"7aee2057-b1a3-424f-a057-8b817632a7ae",
     "process":false,
-    "customId":"",
-    "time":"",
-    "data":{},
-    transactionId: ''
+    "customId":"1245-cbab",
+    "time":"2022-10-17 10:09:08.607381",
+    "data":{}
   }
 
   it('should be defined', () => {
@@ -93,13 +93,14 @@ describe('TransactionsControllerCreate', () => {
   }else{
     
     console.log("el esquema es correcto");
-  }
-
-  if (sample){
     await service.create(search)
     expect(transactionRepository.save);
-    
   }
+
+  // if (sample){
+    
+    
+  // }
   it('should see hello world',async()=>{
     await service.getHello()
 
