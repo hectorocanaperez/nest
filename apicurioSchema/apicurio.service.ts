@@ -29,7 +29,7 @@ export class ApicurioSchemaService{
                 return res.body
             }
         
-        }catch(error){
+            }catch(error){
             console.log("error",error)
             
         }

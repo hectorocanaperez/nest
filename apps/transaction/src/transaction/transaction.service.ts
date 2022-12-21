@@ -8,6 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ApicurioSchemaService } from '../../../../apicurioSchema/apicurio.service';
 import Ajv from 'ajv';
+import { TransactionsModule } from './transaction.module';
 const jsf=require('json-schema-faker');
 
 const ajv = new Ajv() 
@@ -34,21 +35,15 @@ export class TransactionsService {
   async create(req: TransactionDto):Promise<Transaction> {
 
     const schemaVal= await this.apicurioService.getSchema(req.flowId);
-    console.log("este es el schema",schemaVal)
-
-    
-    if (!schemaVal){
-        
-      throw new BadRequestException('el schema esta mal')
-
-
-    }else{
-      
-      console.log("el esquema es correcto");
-      
+    try{
+      var faker=jsf(schemaVal);
+      console.log("este es el schema",schemaVal)
+      const validar=await this.apicurioService.validate(schemaVal,faker)
+    }catch(e){
+      console.log("error",e)
+      throw new BadRequestException('el schema no es correcto')
     }
-    
-    var faker=jsf(schemaVal);
+
 
     console.log("el resultado de faker es :",faker);
     const transaction=new Transaction();
