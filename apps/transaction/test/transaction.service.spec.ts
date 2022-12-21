@@ -25,7 +25,18 @@ describe('TransactionsControllerCreate', () => {
     "data":{}
     
    
-})};
+}),
+validate: () => ({
+  "transactionId":"",
+  "flowId":"7aee2057-b1a3-424f-a057-8b817632a7ae",
+  "process":false,
+  "customId":"1245-cbab",
+  "time":"2022-10-17 10:09:08.607381",
+  "data":{}
+  
+ 
+}),};
+
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -44,7 +55,8 @@ describe('TransactionsControllerCreate', () => {
     .overrideProvider(ApicurioSchemaService) 
     .useValue(apicurioService)
     .compile();
-
+   
+    
     controller = module.get<TransactionsController>(TransactionsController);
     service = module.get<TransactionsService>(TransactionsService); 
     //serviceApicurio=module.get<ApicurioSchemaService>(ApicurioSchemaService); 
