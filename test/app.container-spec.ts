@@ -23,7 +23,7 @@ const redis = require("async-redis");
 const { DockerComposeEnvironment } = require("testcontainers");
 
 
-jest.setTimeout(100000)
+jest.setTimeout(1000000)
 
 
 describe("DockerComposeEnvironment", () => {

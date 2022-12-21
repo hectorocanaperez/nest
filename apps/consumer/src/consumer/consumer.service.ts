@@ -58,7 +58,6 @@ export class ConsumerService {
 
       events.forEach(async event => {
 
-        
         const reducer= this.reducerStore.getReducer(event.type);
        
         if (reducer) {

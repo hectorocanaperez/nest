@@ -1,5 +1,3 @@
-
-
 import  { Transaction } from '../../../transaction/src/transaction/transaction.entity';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -7,10 +5,7 @@ import { Repository} from 'typeorm';
 import { ProducerDto } from './producer.dto';
 import { Producer } from './producer.entity';
 import { ApicurioSchemaService } from '../../../../apicurioSchema/apicurio.service';
-import Ajv from 'ajv';
-
-
-
+// import Ajv from 'ajv';
 
 // const ajv = new Ajv() 
 
@@ -63,8 +58,7 @@ export class ProducerService {
         producer.process=req.process;
         // producer.data.status=req.data.status;
         // producer.data.step=req.data.step;
-        
-        
+      
         console.log("esto es el producer creado",producer)
         return this.producerRepository.save(producer);
         
