@@ -33,14 +33,15 @@ export class ProducerService {
 
   async create(req: ProducerDto):Promise<Producer> {
     const schemaVal= await this.apicurioService.getSchema(req.flowId);
-    console.log("objeto",schemaVal)
+    try{
+     
+      console.log("este es el schema",schemaVal)
+      const validar=await this.apicurioService.validate(schemaVal,req.data)
+    }catch(e){
+      console.log("error",e)
+      throw new BadRequestException('el schema no es correcto')
     
-    if (!schemaVal){
-        throw new BadRequestException('el schema no es correcto')
-
-    }else{
-      console.log("el esquema es correcto");
-      
+    }
       
       const transactionS = await this.transactionRepository.findOne({
         
@@ -71,8 +72,8 @@ export class ProducerService {
         throw new BadRequestException(' producer nor created');
       }
 
-    }
-       
   }
-
+       
 }
+
+

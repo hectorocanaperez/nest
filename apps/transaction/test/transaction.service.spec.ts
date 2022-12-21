@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { Test, TestingModule } from '@nestjs/testing';
 import { TransactionsController } from '../src/transaction/transaction.controller';
 import { TransactionsService } from '../src/transaction/transaction.service';
@@ -6,8 +7,8 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import {ApicurioSchemaService} from '../../../apicurioSchema/apicurio.service'
 import { BadRequestException } from '@nestjs/common';
-import jsf from 'json-schema-faker';
-// const jsf=require('json-schema-faker');
+// import jsf from 'json-schema-faker';
+const jsf=require('json-schema-faker');
 
 describe('TransactionsControllerCreate', () => {
   let controller: TransactionsController;
@@ -71,28 +72,41 @@ describe('TransactionsControllerCreate', () => {
 
   describe('createTransaction',()=>{
     it('should create transaction',async()=>{
-//   const schemaVal= await serviceApicurio.getSchema(search.flowId);
-//   console.log("este es el schema",schemaVal)
-  
-  
-//   if (!serviceApicurio.validate(schemaVal,search.flowId)){
-    
-//       throw new BadRequestException('el schema no es correcto')
 
-//   }else{
+    // const schemaVal= await apicurioService.getSchema(req.flowId);
+    // try{
+    //     var faker=jsf(schemaVal);
+    //     console.log("este es el schema",schemaVal)
+    //     const validar=await this.apicurioService.validate(schemaVal,faker)
+    //   }catch(e){
+    //     console.log("error",e)
+    //     throw new BadRequestException('el schema no es correcto')
+    //   }
+  const schemaVal= await serviceApicurio.getSchema(search.flowId);
+  console.log("este es el schema",schemaVal)
+    const sample=jsf(schemaVal);
+  
+  if (!serviceApicurio.validate(schemaVal,sample)){
     
-//     console.log("el esquema es correcto");
-//   }
-//   const sample=jsf(schemaVal);
-//   if (sample){
+      throw new BadRequestException('el schema no es correcto')
+
+  }else{
+    
+    console.log("el esquema es correcto");
+  }
+
+  if (sample){
     await service.create(search)
     expect(transactionRepository.save);
-  
-     
-    })
-  })
+    
+  }
   it('should see hello world',async()=>{
     await service.getHello()
+
+  
+  })
   })
 
+})
 });
+  
