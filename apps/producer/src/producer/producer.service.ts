@@ -15,9 +15,6 @@ export class ProducerService {
   constructor(@InjectRepository(Producer) private producerRepository: Repository<Producer>,private apicurioService:ApicurioSchemaService,
   @InjectRepository(Transaction) private transactionRepository: Repository<Transaction>){}
 
-
-
-
   async getHello(){
     return "Hello World!";
   }
