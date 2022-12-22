@@ -18,9 +18,9 @@ export class ApicurioSchemaService{
         
     }
 
-    // createSchema(schemaName:string,schemaDefinition:string){
-    //     return schemaName;
-    // }
+    createSchema(schemaName:string,schemaDefinition:string){
+        return schemaName;
+    }
 
     async getSchema(schemaName:string){
         try{
